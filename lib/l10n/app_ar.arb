@@ -1,0 +1,13 @@
+{
+  "language": "اللغة",
+  "mod" : "النمط",
+  "light" : "مضئ",
+  "dark" : "مظلم",
+  "setting" : "الإعدادات",
+  "movies" : "Movies",
+  "home" : "رئيسي",
+  "search" : "بحث",
+  "browse" : "تصفح",
+  "watchlist" : "قائمة المشاهدة",
+  "noMoviesFound" : "لم يتم العثور على أفلام"
+}

@@ -1,0 +1,13 @@
+{
+  "language": "Language",
+  "mod" : "Mod",
+  "light" : "Light",
+  "dark" : "Dark",
+  "setting" : "Setting",
+  "movies" : "Movies",
+  "home" : "HOME",
+  "search" : "SEARCH",
+  "browse" : "BROWSE",
+  "watchlist" : "WATCHLIST",
+  "noMoviesFound" : "No movies found"
+}
