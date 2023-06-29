@@ -34,7 +34,7 @@ class _AppSettingsState extends State<AppSettings> {
             Text(
                 textAlign: TextAlign.start,
                 AppLocalizations.of(context)!.language,
-                style: Theme.of(context).textTheme.bodyLarge),
+                style: Theme.of(context).textTheme.bodyMedium),
             Container(
               height: 40,
               padding:
@@ -52,7 +52,7 @@ class _AppSettingsState extends State<AppSettings> {
                   DropdownMenuItem(
                     value: "en",
                     child: Text("English",
-                        style: Theme.of(context).textTheme.bodyMedium),
+                        style: Theme.of(context).textTheme.bodySmall),
                     onTap: () async {
                       provider.currentLocale = "en";
                       provider.notifyListeners();
@@ -61,7 +61,7 @@ class _AppSettingsState extends State<AppSettings> {
                   DropdownMenuItem(
                     value: "ar",
                     child: Text("العربية",
-                        style: Theme.of(context).textTheme.bodyMedium),
+                        style: Theme.of(context).textTheme.bodySmall),
                     onTap: () async {
                       provider.currentLocale = "ar";
                       provider.notifyListeners();
@@ -79,7 +79,7 @@ class _AppSettingsState extends State<AppSettings> {
             Text(
                 textAlign: TextAlign.start,
                 AppLocalizations.of(context)!.mod,
-                style: Theme.of(context).textTheme.bodyLarge),
+                style: Theme.of(context).textTheme.bodyMedium),
             Container(
               height: 40,
               padding:
@@ -97,7 +97,7 @@ class _AppSettingsState extends State<AppSettings> {
                     DropdownMenuItem(
                       value: ThemeMode.light,
                       child: Text(AppLocalizations.of(context)!.light,
-                          style: Theme.of(context).textTheme.bodyMedium),
+                          style: Theme.of(context).textTheme.bodySmall),
                       onTap: () {
                         provider.currentTheme = ThemeMode.light;
                         provider.notifyListeners();
@@ -106,7 +106,7 @@ class _AppSettingsState extends State<AppSettings> {
                     DropdownMenuItem(
                       value: ThemeMode.dark,
                       child: Text(AppLocalizations.of(context)!.dark,
-                          style: Theme.of(context).textTheme.bodyMedium),
+                          style: Theme.of(context).textTheme.bodySmall),
                       onTap: () {
                         provider.currentTheme = ThemeMode.dark;
                         provider.notifyListeners();

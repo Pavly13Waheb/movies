@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/app_settings.dart';
 import 'package:movies/navbar_screens/browse_tab.dart';
-import 'package:movies/navbar_screens/home_tab.dart';
+import 'package:movies/navbar_screens/home_tab/home_tab.dart';
 import 'package:movies/navbar_screens/search_tab.dart';
 import 'package:movies/navbar_screens/watch_list_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -1,0 +1,2 @@
+String ApiMoviesKey = "c2d29417c7c637ee6313364c9954b0cc";
+String ApiMoviesPopular = "https://api.themoviedb.org/3/movie/popular"
