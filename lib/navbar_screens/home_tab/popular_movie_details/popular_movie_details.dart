@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
 
@@ -16,7 +15,6 @@ class PopularMovieDetails extends StatelessWidget {
         },
       ),
     );
-    ;
   }
 
   Widget getPopularMovieDetails(int index) {
@@ -33,7 +31,6 @@ class PopularMovieDetails extends StatelessWidget {
         } else if (snapshot.hasData) {
           return Container(
             width: MediaQuery.of(context).size.width,
-
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
