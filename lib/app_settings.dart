@@ -22,7 +22,7 @@ class _AppSettingsState extends State<AppSettings> {
 
     return Scaffold(
 
-      appBar: AppBar(        title: Text(AppLocalizations.of(context)!.setting),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.setting),
       ),
       body: Container(
         padding: EdgeInsets.only(
@@ -30,7 +30,7 @@ class _AppSettingsState extends State<AppSettings> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Icon(Icons.settings, size: 50, color: AppColor.grayColor),
+            Icon(Icons.settings, size: 50, color: AppColor.greyColor),
             Text(
                 textAlign: TextAlign.start,
                 AppLocalizations.of(context)!.language,
@@ -43,7 +43,7 @@ class _AppSettingsState extends State<AppSettings> {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(color: AppColor.grayColor)),
+                  border: Border.all(color: AppColor.greyColor)),
               child: DropdownButtonHideUnderline(
                   child: DropdownButton(
                 elevation: 0,
@@ -88,7 +88,7 @@ class _AppSettingsState extends State<AppSettings> {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(color: AppColor.grayColor)),
+                  border: Border.all(color: AppColor.greyColor)),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
                   elevation: 0,

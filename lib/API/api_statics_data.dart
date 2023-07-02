@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:tmdb_api/tmdb_api.dart';
-
 import 'api_popular_class_data.dart';
 import 'package:http/http.dart';
 
@@ -9,8 +7,6 @@ class ApiStaticsManager {
   static String apiMovieBaseUrl = "api.themoviedb.org";
   static String apiMoviePopularUrl = "3/movie/popular";
   static String apiMovieTmdbImageUrl = "http://image.tmdb.org/t/p/w500";
-
-
 
 
   static Future<ApiPopularDM> getPopularData() async {

@@ -4,20 +4,22 @@ import 'app_material.dart';
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.light(background: AppColor.blackColor),
-    primaryColorLight: AppColor.grayColor,
+    primaryColorLight: AppColor.greyColor,
     scaffoldBackgroundColor: AppColor.blackColor,
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: AppColor.whiteColor, fontSize: 30),
-      bodyMedium: TextStyle(color: AppColor.grayColor, fontSize: 25),
-      bodySmall: TextStyle(color: AppColor.grayColor, fontSize: 15),
+      bodyMedium: TextStyle(color: AppColor.greyColor, fontSize: 25),
+      bodySmall: TextStyle(color: AppColor.greyColor, fontSize: 15),
+      labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15,
+        overflow: TextOverflow.fade,),
     ),
     appBarTheme: AppBarTheme(
       toolbarHeight: 80,
       centerTitle: true,
-      color: AppColor.grayColor,
+      color: AppColor.whiteColor,
       shadowColor: Colors.transparent,
       titleTextStyle: TextStyle(
-          color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+          color: AppColor.greyColor, fontSize: 30, fontWeight: FontWeight.bold),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),
@@ -29,8 +31,8 @@ abstract class AppTheme {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       selectedItemColor: AppColor.darkYellowColor,
-      selectedLabelStyle: TextStyle(color: AppColor.grayColor, fontSize: 25),
-      unselectedLabelStyle: TextStyle(color: AppColor.grayColor, fontSize: 15),
+      selectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 25),
+      unselectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 15),
     ),
   );
 
@@ -40,13 +42,23 @@ abstract class AppTheme {
     scaffoldBackgroundColor: AppColor.blackColor,
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: AppColor.whiteColor, fontSize: 30),
-      bodyMedium: TextStyle(color: AppColor.grayColor, fontSize: 25),
-      bodySmall: TextStyle(fontSize: 20, color: AppColor.grayColor),
-    ),
+      bodyMedium: TextStyle(color: AppColor.greyColor, fontSize: 25),
+      bodySmall: TextStyle(fontSize: 20, color: AppColor.greyColor),
+  labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15),
+
+  ),
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColor.whiteColor,
+      toolbarHeight: 80,
+      centerTitle: true,
+      color: AppColor.greyColor,
+      shadowColor: Colors.transparent,
       titleTextStyle: TextStyle(
-          color: AppColor.grayColor, fontSize: 30, fontWeight: FontWeight.bold),
+          color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(30),
+        ),
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColor.navBarColor,

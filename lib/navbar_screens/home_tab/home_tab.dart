@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies/API/api_popular_class_data.dart';
 import 'package:movies/API/api_statics_data.dart';
 
 class HomeTab extends StatefulWidget {
@@ -10,53 +9,85 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-    return popularMovieView();
+    return ListView.builder(
+
+
+      scrollDirection: Axis.horizontal,
+
+      itemBuilder: (context, index) {
+      return  popularMovieView(index);
+    },);
   }
 
-  popularMovieView() {
+  popularMovieView(int index) {
     return Column(
       children: [
         Container(
           color: Colors.grey.shade800,
-          height: 200,
-          alignment: Alignment.topCenter,
+          height: MediaQuery.of(context).size.height * 0.3,
+          alignment: Alignment.center,
           child: FutureBuilder(
             future: ApiStaticsManager.getPopularData(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text("ERROR");
               } else if (snapshot.hasData) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Stack(children: [
                     Container(
-                      alignment: Alignment.bottomLeft,
-                      margin: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height * 0.03),
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.height * 0.08),
+                      width: MediaQuery.of(context).size.width,
+                      child: Image(
+                        image: NetworkImage(
+                            ApiStaticsManager.apiMovieTmdbImageUrl +
+                                snapshot.data!.results![index].backdropPath!),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05),
                       child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Image(
                               image: NetworkImage(
                                   ApiStaticsManager.apiMovieTmdbImageUrl +
-                                      snapshot.data!.results![2].posterPath!),
-                              height: 100,
-                              width: 100,
+                                      snapshot.data!.results![index].posterPath!),
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              width: MediaQuery.of(context).size.width * 0.2,
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Flexible(
-                                  child: Text(
-                                    snapshot.data!.results![2].title.toString(),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical:
+                                      MediaQuery.of(context).size.height * 0.02,
+                                  horizontal:
+                                      MediaQuery.of(context).size.width * 0.03),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    snapshot.data!.results![index].title.toString(),
                                     style: TextStyle(color: Colors.white),
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
                                   ),
-                                )
-                              ],
+                                  Text(
+                                    "releaseDate : ${snapshot.data!.results![index].releaseDate.toString()}   "
+                                    "voteAverage : ${snapshot.data!.results![index].voteAverage.toString()}   "
+                                    "voteCount : ${snapshot.data!.results![index].voteCount.toString()}   ",
+                                    style:
+                                        Theme.of(context).textTheme.labelSmall,
+                                  )
+                                ],
+                              ),
                             )
                           ]),
                     ),
-                  ],
+                  ]),
                 );
               } else {
                 return CircularProgressIndicator();
