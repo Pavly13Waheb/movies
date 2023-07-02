@@ -9,6 +9,8 @@ class ApiPopularDM {
       this.results, 
       this.totalPages, 
       this.totalResults,
+    this.status_code,
+    this.status_message
      });
 
 
@@ -16,6 +18,9 @@ class ApiPopularDM {
   List<ResultsDM>? results;
   num? totalPages;
   num? totalResults;
+  String? status_code;
+  String? status_message;
+
 
 
 

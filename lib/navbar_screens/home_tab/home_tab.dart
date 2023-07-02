@@ -1,11 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_popular_class_data.dart';
 import 'package:movies/API/api_statics_data.dart';
 
 class HomeTab extends StatefulWidget {
-
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -13,43 +10,63 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<ApiPopularDM>(
-      future: ApiStaticsManager.getPopularData(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text("ERROR");
-        } else if (snapshot.hasData) {
-          return Center(
-            child: Column(children: [
-              Text("API VideO"),
-              Row(
-                children: [
-                  Image(
-                      image: AssetImage(snapshot
-                          .data!.results![0].posterPath
-                          .toString())),
-                  Column(
-                    children: [
-                      Text("API MOVIE NAME"),
-                      Expanded(
-                        child: Row(
+    return popularMovieView();
+  }
+
+  popularMovieView() {
+    return Column(
+      children: [
+        Container(
+          color: Colors.grey.shade800,
+          height: 200,
+          alignment: Alignment.topCenter,
+          child: FutureBuilder(
+            future: ApiStaticsManager.getPopularData(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text("ERROR");
+              } else if (snapshot.hasData) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      alignment: Alignment.bottomLeft,
+                      margin: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height * 0.03),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text("MOVIE YEAR"),
-                            Text("MOVIE PG ...."),
-                            Text("MOVIE TIME")
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              )
-            ]),
-          );
-        } else {
-          return CircularProgressIndicator();
-        }
-      },
+                            Image(
+                              image: NetworkImage(
+                                  ApiStaticsManager.apiMovieTmdbImageUrl +
+                                      snapshot.data!.results![2].posterPath!),
+                              height: 100,
+                              width: 100,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Flexible(
+                                  child: Text(
+                                    snapshot.data!.results![2].title.toString(),
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                )
+                              ],
+                            )
+                          ]),
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+
+              ;
+            },
+          ),
+        ),
+      ],
     );
   }
 }
