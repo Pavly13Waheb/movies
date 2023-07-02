@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/provider.dart';
+import 'package:movies/navbar_screens/home_tab/popular_movie_details/popular_movie_details.dart';
+import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_theme.dart';
 import 'package:provider/provider.dart';
-import 'app_settings.dart';
 import 'home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -57,7 +57,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       routes: {
         HomePage.routeName: (_) => HomePage(),
-        AppSettings.routeName: (_) => AppSettings(),
+        PopularMovieDetails.routName: (_) => PopularMovieDetails(),
+
       },
       initialRoute: HomePage.routeName,
     );

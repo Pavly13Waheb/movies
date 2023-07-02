@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movies/provider.dart';
 import 'package:provider/provider.dart';
-import '../theme/app_material.dart';
+import '../../../theme/app_material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'home_page.dart';
+import '../../home_page.dart';
+import '../../provider/provider.dart';
 
 class AppSettings extends StatefulWidget {
   static String routeName = "appSettings";
