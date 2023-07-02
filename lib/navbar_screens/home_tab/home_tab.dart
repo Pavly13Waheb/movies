@@ -56,7 +56,9 @@ class _HomeTabState extends State<HomeTab> {
                         padding: EdgeInsets.symmetric(
                             horizontal:
                                 MediaQuery.of(context).size.width * 0.05),
-                        child: Row(
+                        child:
+
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Image(

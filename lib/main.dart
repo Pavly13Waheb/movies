@@ -57,10 +57,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       routes: {
         HomePage.routeName: (_) => HomePage(),
-        PopularMovieDetails.routName: (_) => PopularMovieDetails(),
+        PopularMovieDetails.routeName: (_) => PopularMovieDetails(),
 
       },
-      initialRoute: HomePage.routeName,
+      initialRoute: PopularMovieDetails.routeName,
     );
   }
 
