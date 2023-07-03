@@ -3,6 +3,8 @@
 /// total_pages : 38893
 /// total_results : 777858
 
+// ignore_for_file: non_constant_identifier_names
+
 class ApiPopularDM {
   ApiPopularDM({
       this.page, 

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
+import 'package:movies/navbar_screens/home_tab/popular_movie_details/popular_movie_details.dart';
+import 'package:movies/navbar_screens/home_tab/popular_movie_details/popular_navigator_args.dart';
 
 class HomeTab extends StatefulWidget {
+  const HomeTab({super.key});
+
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -9,7 +13,8 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-    return Container(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height *0.03),
+    return Container(
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
@@ -56,9 +61,7 @@ class _HomeTabState extends State<HomeTab> {
                         padding: EdgeInsets.symmetric(
                             horizontal:
                                 MediaQuery.of(context).size.width * 0.05),
-                        child:
-
-                        Row(
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Image(
@@ -80,13 +83,16 @@ class _HomeTabState extends State<HomeTab> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      //Navigator.pushNamed(context, routeName)
+                                      Navigator.pushNamed(context,
+                                          PopularMovieDetails.routeName,
+                                          arguments:
+                                      PopularNavigatorArgs(id: snapshot.data!.results![index].id!, index: index)
+                                      );
                                     },
-
                                     child: Text(
                                       snapshot.data!.results![index].title
                                           .toString(),
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(color: Colors.white),
                                       softWrap: false,
                                       overflow: TextOverflow.fade,
                                     ),
@@ -108,7 +114,7 @@ class _HomeTabState extends State<HomeTab> {
                   ),
                 );
               } else {
-                return CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               }
             },
           ),
@@ -116,8 +122,4 @@ class _HomeTabState extends State<HomeTab> {
       ],
     );
   }
-
-
-
-
 }

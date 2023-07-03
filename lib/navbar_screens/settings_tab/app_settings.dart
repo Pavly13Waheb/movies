@@ -1,13 +1,15 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../theme/app_material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../home_page.dart';
 import '../../provider/provider.dart';
 
 class AppSettings extends StatefulWidget {
   static String routeName = "appSettings";
+
+  const AppSettings({super.key});
 
   @override
   State<AppSettings> createState() => _AppSettingsState();
@@ -38,11 +40,11 @@ class _AppSettingsState extends State<AppSettings> {
             Container(
               height: 40,
               padding:
-                  EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 5),
-              margin: EdgeInsets.only(top: 10, bottom: 10),
+                  const EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 5),
+              margin: const EdgeInsets.only(top: 10, bottom: 10),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   border: Border.all(color: AppColor.greyColor)),
               child: DropdownButtonHideUnderline(
                   child: DropdownButton(
@@ -83,11 +85,11 @@ class _AppSettingsState extends State<AppSettings> {
             Container(
               height: 40,
               padding:
-                  EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 5),
-              margin: EdgeInsets.only(top: 10, bottom: 10),
+                  const EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 5),
+              margin: const EdgeInsets.only(top: 10, bottom: 10),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   border: Border.all(color: AppColor.greyColor)),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(

@@ -20,7 +20,7 @@ abstract class AppTheme {
       shadowColor: Colors.transparent,
       titleTextStyle: TextStyle(
           color: AppColor.greyColor, fontSize: 30, fontWeight: FontWeight.bold),
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),
         ),
@@ -52,9 +52,9 @@ abstract class AppTheme {
       centerTitle: true,
       color: AppColor.greyColor,
       shadowColor: Colors.transparent,
-      titleTextStyle: TextStyle(
+      titleTextStyle: const TextStyle(
           color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),
         ),

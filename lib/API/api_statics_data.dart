@@ -8,18 +8,12 @@ class ApiStaticsManager {
   static String apiMoviePopularUrl = "3/movie/popular";
   static String apiMovieTmdbImageUrl = "http://image.tmdb.org/t/p/w500";
 
-
   static Future<ApiPopularDM> getPopularData() async {
-
-
-
-    Uri url = Uri.http(apiMovieBaseUrl, apiMoviePopularUrl, {"api_key": apiKeyMovie});
+    Uri url =
+        Uri.http(apiMovieBaseUrl, apiMoviePopularUrl, {"api_key": apiKeyMovie});
     Response response = await get(url);
     Map json = jsonDecode(response.body);
     ApiPopularDM apiPopularDM = ApiPopularDM.fromJson(json);
-    print(json);
-
-
 
     return apiPopularDM;
   }

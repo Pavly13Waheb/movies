@@ -13,12 +13,14 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => AppProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -49,7 +51,7 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
         AppLocalizations.delegate
       ],
-      supportedLocales: [
+      supportedLocales: const [
         Locale('en'), // English
         Locale('ar'), // Arabic
       ],
@@ -57,10 +59,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       routes: {
         HomePage.routeName: (_) => HomePage(),
-        PopularMovieDetails.routeName: (_) => PopularMovieDetails(),
+        PopularMovieDetails.routeName: (_) => const PopularMovieDetails(),
 
       },
-      initialRoute: PopularMovieDetails.routeName,
+      initialRoute: HomePage.routeName,
     );
   }
 
