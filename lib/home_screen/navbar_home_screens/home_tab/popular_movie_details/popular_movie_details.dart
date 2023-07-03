@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
-import 'package:movies/navbar_screens/home_tab/popular_movie_details/popular_navigator_args.dart';
+import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_navigator_args.dart';
 import 'package:movies/theme/app_material.dart';
 
 class PopularMovieDetails extends StatelessWidget {
@@ -17,7 +17,7 @@ class PopularMovieDetails extends StatelessWidget {
 
     return Container(
         padding:
-            EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
+            EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
         child: getPopularMovieDetails(index, id));
   }
 
@@ -38,7 +38,6 @@ class PopularMovieDetails extends StatelessWidget {
               color: AppColor.greyColor,
               width: MediaQuery.of(context).size.width,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
                     padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.02),
@@ -61,6 +60,7 @@ class PopularMovieDetails extends StatelessWidget {
                         horizontal: MediaQuery.of(context).size.width * 0.03,
                         vertical: MediaQuery.of(context).size.height * 0.02),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image(
                           width: MediaQuery.of(context).size.width * 0.3,

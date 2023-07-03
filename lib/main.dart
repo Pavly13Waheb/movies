@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movies/navbar_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_theme.dart';
 import 'package:provider/provider.dart';
-import 'home_page.dart';
+import 'home_screen/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 
 
 void main() {

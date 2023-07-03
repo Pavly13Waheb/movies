@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movies/navbar_screens/browse_tab/browse_tab.dart';
-import 'package:movies/navbar_screens/home_tab/home_tab.dart';
-import 'package:movies/navbar_screens/watch_list_tab/watch_list_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movies/theme/app_material.dart';
-import 'navbar_screens/search_tab/search_tab.dart';
-import 'navbar_screens/settings_tab/app_settings.dart';
+
+import 'navbar_home_screens/browse_tab/browse_tab.dart';
+import 'navbar_home_screens/home_tab/home_tab.dart';
+import 'navbar_home_screens/search_tab/search_tab.dart';
+import 'navbar_home_screens/settings_tab/app_settings.dart';
+import 'navbar_home_screens/watch_list_tab/watch_list_tab.dart';
 
 class HomePage extends StatefulWidget {
   static String routeName = "homepage";

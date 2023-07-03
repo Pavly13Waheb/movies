@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
-import 'package:movies/navbar_screens/home_tab/popular_movie_details/popular_movie_details.dart';
-import 'package:movies/navbar_screens/home_tab/popular_movie_details/popular_navigator_args.dart';
+import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
+import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_navigator_args.dart';
+
+
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -14,7 +16,7 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.06),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
