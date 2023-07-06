@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:movies/API/api_top_rated_movie/api_top_rated_data_model.dart';
-import 'package:movies/API/popular_api/api_popular_class_data.dart';
+import 'package:movies/API/popular_api/api_popular_class_data_model.dart';
 import 'package:movies/API/search_api_movie/Search_data_model.dart';
 
 class ApiStaticsManager {

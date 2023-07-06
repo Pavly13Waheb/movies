@@ -28,24 +28,26 @@ class MovieSearch extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // TODO: implement buildResults
-    return ifResultQueryNull(context);
+    return ifQueryIsNull(context);
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     // TODO: implement buildSuggestions
-    return Container();
+    return ifQueryIsNull(context);
   }
 
 
-  ifResultQueryNull(BuildContext context) {
+
+
+  Widget ifQueryIsNull(BuildContext context){
     if (query == "") {
       return Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
+            const Center(child: CircularProgressIndicator()),
             SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Text(
               "Please type what you are searching for",
@@ -59,66 +61,69 @@ class MovieSearch extends SearchDelegate {
           future: ApiStaticsManager.searchDelegate(searchKeyWord: query),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              print("${snapshot.error.toString()}");
-              return Text("${snapshot.error.toString()}");
+              return Text(snapshot.error.toString());
             } else if (snapshot.hasData) {
-              return ListView.builder(
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: MediaQuery.of(context).size.width * 0.08,
+                    mainAxisSpacing: MediaQuery.of(context).size.height * 0.02),
                 itemCount: snapshot.data!.results!.length,
                 itemBuilder: (context, index) {
-                  return       Column(
-                    children: [
-                      FutureBuilder(
-                        future: ApiStaticsManager.getPopularData(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Center(
+                  return FutureBuilder(
+                    future: ApiStaticsManager.searchDelegate(searchKeyWord: query),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(
+                            "ERROR",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        );
+                      } else if (snapshot.hasData) {
+                        return Column(
+                          children: [
+                            Expanded(flex: 11,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical:
+                                    MediaQuery.of(context).size.height *
+                                        0.01),
+                                child: Image(
+                                    height: MediaQuery.of(context).size.height * 0.2,
+                                    width:
+                                    MediaQuery.of(context).size.width *
+                                        0.37,
+                                    image: NetworkImage(ApiStaticsManager
+                                        .apiMovieTmdbImageUrl +
+                                        snapshot.data!.results![index]
+                                            .posterPath!)),
+                              ),
+                            ),
+                            Expanded(
                               child: Text(
-                                "ERROR",
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                textAlign: TextAlign.center,
+                                snapshot.data!.results![index].title!,
+                                style:
+                                Theme.of(context).textTheme.labelSmall,
                               ),
-                            );
-                          } else if (snapshot.hasData) {
-                            return Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: MediaQuery.of(context).size.height * 0.01),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: MediaQuery.of(context).size.height * 0.01),
-                                    child: Image(
-                                        width: MediaQuery.of(context).size.width * 0.37,
-                                        image: NetworkImage(
-                                            ApiStaticsManager.apiMovieTmdbImageUrl +
-                                                snapshot.data!.results![index].posterPath!)),
-                                  ),
-                                  Text(textAlign: TextAlign.center,
-                                    snapshot.data!.results![index].title!,
-                                    style: Theme.of(context).textTheme.labelSmall,
-                                  )
-                                ],
-                              ),
-                            );
-                          } else {
-                            return const Center(child: CircularProgressIndicator());
-                          }
-                        },
-                      )
-                    ],
+                            )
+                          ],
+                        );
+                      } else {
+                        return const Center(
+                            child: CircularProgressIndicator());
+                      }
+                    },
                   );
-
                 },
               );
             } else {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
           });
     }
   }
-
-
-
 }
