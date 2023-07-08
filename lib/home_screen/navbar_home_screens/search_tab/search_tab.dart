@@ -12,36 +12,39 @@ class SearchTab extends StatefulWidget {
 class _SearchTabState extends State<SearchTab> {
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
     return Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * 0.1,
-          horizontal: MediaQuery.of(context).size.width * 0.05),
+          vertical: height * 0.1, horizontal: width * 0.05),
       child: InkWell(
         onTap: () {
           showSearch(context: context, delegate: MovieSearch());
           setState(() {});
         },
         child: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.04),
-            width: MediaQuery.of(context).size.width * 0.6,
-            decoration: BoxDecoration(
-                color: AppColor.greyColor,
-                borderRadius: BorderRadius.circular(50)),
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Search",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  Icon(
-                    Icons.search,
-                    color: AppColor.yellowColor,
-                  )
-                ])),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+          width: width * 0.6,
+          decoration: BoxDecoration(
+              color: AppColor.greyColor,
+              borderRadius: BorderRadius.circular(50)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Search",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              Icon(
+                Icons.search,
+                color: AppColor.yellowColor,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
