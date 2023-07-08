@@ -58,7 +58,7 @@ class MovieSearch extends SearchDelegate {
       );
     } else {
       return FutureBuilder<SearchDM>(
-          future: ApiManager.searchDelegate(searchKeyWord: query),
+          future: ApiMovieManager.searchDelegate(searchKeyWord: query),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Text(snapshot.error.toString());
@@ -71,7 +71,7 @@ class MovieSearch extends SearchDelegate {
                 itemCount: snapshot.data!.results!.length,
                 itemBuilder: (context, index) {
                   return FutureBuilder(
-                    future: ApiManager.searchDelegate(searchKeyWord: query),
+                    future: ApiMovieManager.searchDelegate(searchKeyWord: query),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(
@@ -94,8 +94,8 @@ class MovieSearch extends SearchDelegate {
                                     width:
                                     MediaQuery.of(context).size.width *
                                         0.37,
-                                    image: NetworkImage(ApiManager
-                                        .apiMovieTmdbImageUrl +
+                                    image: NetworkImage(ApiMovieManager
+                                        .apiMovieTMDBImageUrl +
                                         snapshot.data!.results![index]
                                             .posterPath!)),
                               ),

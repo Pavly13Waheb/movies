@@ -6,11 +6,11 @@ import 'model_movies_api/api_popular_class_data_model.dart';
 import 'model_movies_api/api_top_rated_data_model.dart';
 import 'model_movies_api/search_data_model.dart';
 
-class ApiManager {
+class ApiMovieManager {
   static String apiKeyMovie = "c2d29417c7c637ee6313364c9954b0cc";
   static String apiMovieBaseUrl = "api.themoviedb.org";
   static String apiMoviePopularUrl = "3/movie/popular";
-  static String apiMovieTmdbImageUrl = "http://image.tmdb.org/t/p/w500";
+  static String apiMovieTMDBImageUrl = "http://image.tmdb.org/t/p/w500";
   static String apiMovieTopRatedUrl = "3/movie/top_rated";
   static String apiMovieSearchUrl = "3/search/movie";
   static String apiCategoryListUrl = "3/genre/movie/list";

@@ -61,7 +61,7 @@ class _HomeTabState extends State<HomeTab> {
       color: Colors.grey.shade900,
       alignment: Alignment.center,
       child: FutureBuilder(
-        future: ApiManager.getPopularData(),
+        future: ApiMovieManager.getPopularData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -76,7 +76,7 @@ class _HomeTabState extends State<HomeTab> {
               child: Stack(
                 children: [
                   Image(
-                    image: NetworkImage(ApiManager.apiMovieTmdbImageUrl +
+                    image: NetworkImage(ApiMovieManager.apiMovieTMDBImageUrl +
                         snapshot.data!.results![index].backdropPath!),
                     fit: BoxFit.fill,
                   ),
@@ -89,7 +89,7 @@ class _HomeTabState extends State<HomeTab> {
                       children: [
                         Image(
                           image: NetworkImage(
-                              ApiManager.apiMovieTmdbImageUrl +
+                              ApiMovieManager.apiMovieTMDBImageUrl +
                                   snapshot.data!.results![index].posterPath!),
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: MediaQuery.of(context).size.width * 0.3,
@@ -149,7 +149,7 @@ class _HomeTabState extends State<HomeTab> {
       Column(
       children: [
         FutureBuilder(
-          future: ApiManager.getTopRatedData(),
+          future: ApiMovieManager.getTopRatedData(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Center(
@@ -171,7 +171,7 @@ class _HomeTabState extends State<HomeTab> {
                       child: Image(
                           width: MediaQuery.of(context).size.width * 0.37,
                           image: NetworkImage(
-                              ApiManager.apiMovieTmdbImageUrl +
+                              ApiMovieManager.apiMovieTMDBImageUrl +
                                   snapshot.data!.results![index].posterPath!)),
                     ),
                     Text(textAlign: TextAlign.center,
