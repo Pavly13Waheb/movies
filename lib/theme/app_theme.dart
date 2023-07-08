@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'app_material.dart';
 
 abstract class AppTheme {
+  
+  
+  
   static ThemeData lightTheme = ThemeData(
+    
     colorScheme: ColorScheme.light(background: AppColor.blackColor),
     primaryColorLight: AppColor.greyColor,
     scaffoldBackgroundColor: AppColor.blackColor,
