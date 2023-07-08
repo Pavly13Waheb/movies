@@ -61,7 +61,7 @@ class _HomeTabState extends State<HomeTab> {
       color: Colors.grey.shade900,
       alignment: Alignment.center,
       child: FutureBuilder(
-        future: ApiStaticsManager.getPopularData(),
+        future: ApiManager.getPopularData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -76,7 +76,7 @@ class _HomeTabState extends State<HomeTab> {
               child: Stack(
                 children: [
                   Image(
-                    image: NetworkImage(ApiStaticsManager.apiMovieTmdbImageUrl +
+                    image: NetworkImage(ApiManager.apiMovieTmdbImageUrl +
                         snapshot.data!.results![index].backdropPath!),
                     fit: BoxFit.fill,
                   ),
@@ -89,7 +89,7 @@ class _HomeTabState extends State<HomeTab> {
                       children: [
                         Image(
                           image: NetworkImage(
-                              ApiStaticsManager.apiMovieTmdbImageUrl +
+                              ApiManager.apiMovieTmdbImageUrl +
                                   snapshot.data!.results![index].posterPath!),
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: MediaQuery.of(context).size.width * 0.3,
@@ -149,7 +149,7 @@ class _HomeTabState extends State<HomeTab> {
       Column(
       children: [
         FutureBuilder(
-          future: ApiStaticsManager.getTopRatedData(),
+          future: ApiManager.getTopRatedData(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Center(
@@ -171,7 +171,7 @@ class _HomeTabState extends State<HomeTab> {
                       child: Image(
                           width: MediaQuery.of(context).size.width * 0.37,
                           image: NetworkImage(
-                              ApiStaticsManager.apiMovieTmdbImageUrl +
+                              ApiManager.apiMovieTmdbImageUrl +
                                   snapshot.data!.results![index].posterPath!)),
                     ),
                     Text(textAlign: TextAlign.center,
@@ -182,7 +182,7 @@ class _HomeTabState extends State<HomeTab> {
                 ),
               );
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return  Center(child: CircularProgressIndicator());
             }
           },
         )

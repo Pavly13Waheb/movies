@@ -23,7 +23,7 @@ class PopularMovieDetails extends StatelessWidget {
 
   Widget getPopularMovieDetails(int index, num id) {
     return FutureBuilder(
-      future: ApiStaticsManager.getPopularData(),
+      future: ApiManager.getPopularData(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -44,7 +44,7 @@ class PopularMovieDetails extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     child: Image(
                       image: NetworkImage(
-                        ApiStaticsManager.apiMovieTmdbImageUrl +
+                        ApiManager.apiMovieTmdbImageUrl +
                             snapshot.data!.results![index].backdropPath
                                 .toString(),
                       ),
@@ -65,7 +65,7 @@ class PopularMovieDetails extends StatelessWidget {
                         Image(
                           width: MediaQuery.of(context).size.width * 0.3,
                           image: NetworkImage(
-                            ApiStaticsManager.apiMovieTmdbImageUrl +
+                            ApiManager.apiMovieTmdbImageUrl +
                                 snapshot.data!.results![index].posterPath
                                     .toString(),
                           ),

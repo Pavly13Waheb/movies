@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
-import 'package:movies/API/search_api_movie/Search_data_model.dart';
+import '../../../../API/model_movies_api/search_data_model.dart';
 
 class MovieSearch extends SearchDelegate {
   @override
@@ -58,7 +58,7 @@ class MovieSearch extends SearchDelegate {
       );
     } else {
       return FutureBuilder<SearchDM>(
-          future: ApiStaticsManager.searchDelegate(searchKeyWord: query),
+          future: ApiManager.searchDelegate(searchKeyWord: query),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Text(snapshot.error.toString());
@@ -71,7 +71,7 @@ class MovieSearch extends SearchDelegate {
                 itemCount: snapshot.data!.results!.length,
                 itemBuilder: (context, index) {
                   return FutureBuilder(
-                    future: ApiStaticsManager.searchDelegate(searchKeyWord: query),
+                    future: ApiManager.searchDelegate(searchKeyWord: query),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(
@@ -94,7 +94,7 @@ class MovieSearch extends SearchDelegate {
                                     width:
                                     MediaQuery.of(context).size.width *
                                         0.37,
-                                    image: NetworkImage(ApiStaticsManager
+                                    image: NetworkImage(ApiManager
                                         .apiMovieTmdbImageUrl +
                                         snapshot.data!.results![index]
                                             .posterPath!)),

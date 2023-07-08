@@ -45,6 +45,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   http: ^1.1.0
   video_player: ^2.7.0
+  textfield_search: ^0.10.0
 
 
 flutter_launcher_icons:
