@@ -13,3 +13,5 @@ class AppColor {
 class AppImage {
   static String logo = "assets/logo.png";
 }
+
+
