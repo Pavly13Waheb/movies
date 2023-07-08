@@ -1,10 +1,11 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 import '../../../provider/provider.dart';
 import '../../../theme/app_material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppSettings extends StatefulWidget {
   static String routeName = "appSettings";
@@ -23,8 +24,8 @@ class _AppSettingsState extends State<AppSettings> {
     ThemeMode? mod = provider.currentTheme;
 
     return Scaffold(
-
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.setting),
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.setting),
       ),
       body: Container(
         padding: EdgeInsets.only(
@@ -39,8 +40,8 @@ class _AppSettingsState extends State<AppSettings> {
                 style: Theme.of(context).textTheme.bodyMedium),
             Container(
               height: 40,
-              padding:
-                  const EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 5),
+              padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: 15, vertical: 5),
               margin: const EdgeInsets.only(top: 10, bottom: 10),
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -84,8 +85,8 @@ class _AppSettingsState extends State<AppSettings> {
                 style: Theme.of(context).textTheme.bodyMedium),
             Container(
               height: 40,
-              padding:
-                  const EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 5),
+              padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: 15, vertical: 5),
               margin: const EdgeInsets.only(top: 10, bottom: 10),
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -131,10 +132,11 @@ class _AppSettingsState extends State<AppSettings> {
       ),
     );
   }
+
   drawerChild(
       {required IconData icon,
-        required String childName,
-        required Function() onChildTap}) {
+      required String childName,
+      required Function() onChildTap}) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(

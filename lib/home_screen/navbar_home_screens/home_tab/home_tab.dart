@@ -30,7 +30,8 @@ class _HomeTabState extends State<HomeTab> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.01),
+              padding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height * 0.01),
               color: AppColor.greyColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,8 +146,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget topRatedMovieView(int index) {
-    return
-      Column(
+    return Column(
       children: [
         FutureBuilder(
           future: ApiMovieManager.getTopRatedData(),
@@ -174,7 +174,8 @@ class _HomeTabState extends State<HomeTab> {
                               ApiMovieManager.apiMovieTMDBImageUrl +
                                   snapshot.data!.results![index].posterPath!)),
                     ),
-                    Text(textAlign: TextAlign.center,
+                    Text(
+                      textAlign: TextAlign.center,
                       snapshot.data!.results![index].title!,
                       style: Theme.of(context).textTheme.labelSmall,
                     )
@@ -182,7 +183,7 @@ class _HomeTabState extends State<HomeTab> {
                 ),
               );
             } else {
-              return  Center(child: CircularProgressIndicator());
+              return Center(child: CircularProgressIndicator());
             }
           },
         )

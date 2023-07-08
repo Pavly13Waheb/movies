@@ -2,7 +2,8 @@
 
 class ApiCategoriesMovieDM {
   ApiCategoriesMovieDM({
-      this.genres,});
+    this.genres,
+  });
 
   ApiCategoriesMovieDM.fromJson(dynamic json) {
     if (json['genres'] != null) {
@@ -12,6 +13,7 @@ class ApiCategoriesMovieDM {
       });
     }
   }
+
   List<Genres>? genres;
 
   Map<String, dynamic> toJson() {
@@ -21,7 +23,6 @@ class ApiCategoriesMovieDM {
     }
     return map;
   }
-
 }
 
 /// id : 28
@@ -29,13 +30,15 @@ class ApiCategoriesMovieDM {
 
 class Genres {
   Genres({
-      this.id, 
-      this.name,});
+    this.id,
+    this.name,
+  });
 
   Genres.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
   }
+
   int? id;
   String? name;
 
@@ -45,5 +48,4 @@ class Genres {
     map['name'] = name;
     return map;
   }
-
 }

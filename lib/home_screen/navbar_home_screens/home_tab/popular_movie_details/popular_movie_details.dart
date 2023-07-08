@@ -40,7 +40,8 @@ class PopularMovieDetails extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.02),
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.02),
                     width: MediaQuery.of(context).size.width,
                     child: Image(
                       image: NetworkImage(
@@ -73,7 +74,11 @@ class PopularMovieDetails extends StatelessWidget {
                         Expanded(
                           child: Column(
                             children: [
-                              Container(padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02),
+                              Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          MediaQuery.of(context).size.width *
+                                              0.02),
                                   width: MediaQuery.of(context).size.width,
                                   child: Text(
                                     snapshot.data!.results![index].overview

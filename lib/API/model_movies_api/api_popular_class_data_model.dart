@@ -6,15 +6,13 @@
 // ignore_for_file: non_constant_identifier_names
 
 class ApiPopularDM {
-  ApiPopularDM({
-      this.page, 
-      this.results, 
-      this.totalPages, 
+  ApiPopularDM(
+      {this.page,
+      this.results,
+      this.totalPages,
       this.totalResults,
-    this.status_code,
-    this.status_message
-     });
-
+      this.status_code,
+      this.status_message});
 
   num? page;
   List<ResultsDM>? results;
@@ -22,9 +20,6 @@ class ApiPopularDM {
   num? totalResults;
   String? status_code;
   String? status_message;
-
-
-
 
   ApiPopularDM.fromJson(dynamic json) {
     page = json['page'];
@@ -38,7 +33,6 @@ class ApiPopularDM {
     totalResults = json['total_results'];
   }
 
-
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['page'] = page;
@@ -49,7 +43,6 @@ class ApiPopularDM {
     map['total_results'] = totalResults;
     return map;
   }
-
 }
 
 /// adult : false
@@ -69,22 +62,21 @@ class ApiPopularDM {
 
 class ResultsDM {
   ResultsDM({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,});
-
-
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+  });
 
   bool? adult;
   String? backdropPath;
@@ -100,8 +92,6 @@ class ResultsDM {
   bool? video;
   num? voteAverage;
   num? voteCount;
-
-
 
   ResultsDM.fromJson(dynamic json) {
     adult = json['adult'];
@@ -119,8 +109,6 @@ class ResultsDM {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
-
-
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -140,5 +128,4 @@ class ResultsDM {
     map['vote_count'] = voteCount;
     return map;
   }
-
 }

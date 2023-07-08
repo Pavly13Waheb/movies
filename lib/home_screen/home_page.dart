@@ -11,19 +11,21 @@ import 'navbar_home_screens/watch_list_tab/watch_list_tab.dart';
 class HomePage extends StatefulWidget {
   static String routeName = "homepage";
 
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   List navbar = [
-    HomeTab(),
-    SearchTab(),
-    BrowseTab(),
-    WatchListTab(),
-    AppSettings()
+    const HomeTab(),
+    const SearchTab(),
+    const BrowseTab(),
+    const WatchListTab(),
+    const AppSettings()
   ];
-  int navbarpage = 0;
+  int navBarPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: navbar[navbarpage],
+        child: navbar[navBarPage],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -64,9 +66,9 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: AppColor.navBarColor,
           ),
         ],
-        currentIndex: navbarpage,
+        currentIndex: navBarPage,
         onTap: (int index) {
-          navbarpage = index;
+          navBarPage = index;
           setState(() {});
         },
       ),

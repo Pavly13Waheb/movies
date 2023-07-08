@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_material.dart';
 
 abstract class AppTheme {
@@ -10,8 +11,11 @@ abstract class AppTheme {
       bodyLarge: TextStyle(color: AppColor.whiteColor, fontSize: 30),
       bodyMedium: TextStyle(color: AppColor.greyColor, fontSize: 25),
       bodySmall: TextStyle(color: AppColor.greyColor, fontSize: 15),
-      labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15,
-        overflow: TextOverflow.fade,),
+      labelSmall: TextStyle(
+        color: AppColor.whiteColor,
+        fontSize: 15,
+        overflow: TextOverflow.fade,
+      ),
     ),
     appBarTheme: AppBarTheme(
       toolbarHeight: 80,
@@ -44,9 +48,8 @@ abstract class AppTheme {
       bodyLarge: TextStyle(color: AppColor.whiteColor, fontSize: 30),
       bodyMedium: TextStyle(color: AppColor.greyColor, fontSize: 25),
       bodySmall: TextStyle(fontSize: 20, color: AppColor.greyColor),
-  labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15),
-
-  ),
+      labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15),
+    ),
     appBarTheme: AppBarTheme(
       toolbarHeight: 80,
       centerTitle: true,

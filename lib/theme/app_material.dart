@@ -8,7 +8,6 @@ class AppColor {
   static Color navBarColor = const Color(0XFF1A1A1A);
   static Color lightBlueColor = const Color(0XFF4882CF);
   static Color yellowColor = const Color(0XFFF7B539);
-
 }
 
 class AppImage {

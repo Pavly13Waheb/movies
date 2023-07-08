@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
+
 import '../../../../API/model_movies_api/search_data_model.dart';
 
 class MovieSearch extends SearchDelegate {
@@ -11,7 +12,7 @@ class MovieSearch extends SearchDelegate {
           onPressed: () {
             showResults(context);
           },
-          icon: Icon(Icons.search))
+          icon: const Icon(Icons.search))
     ];
   }
 
@@ -22,7 +23,7 @@ class MovieSearch extends SearchDelegate {
         onPressed: () {
           close(context, null);
         },
-        icon: Icon(Icons.clear));
+        icon: const Icon(Icons.clear));
   }
 
   @override
@@ -37,10 +38,7 @@ class MovieSearch extends SearchDelegate {
     return ifQueryIsNull(context);
   }
 
-
-
-
-  Widget ifQueryIsNull(BuildContext context){
+  Widget ifQueryIsNull(BuildContext context) {
     if (query == "") {
       return Center(
         child: Column(
@@ -71,7 +69,8 @@ class MovieSearch extends SearchDelegate {
                 itemCount: snapshot.data!.results!.length,
                 itemBuilder: (context, index) {
                   return FutureBuilder(
-                    future: ApiMovieManager.searchDelegate(searchKeyWord: query),
+                    future:
+                        ApiMovieManager.searchDelegate(searchKeyWord: query),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(
@@ -83,36 +82,35 @@ class MovieSearch extends SearchDelegate {
                       } else if (snapshot.hasData) {
                         return Column(
                           children: [
-                            Expanded(flex: 11,
+                            Expanded(
+                              flex: 11,
                               child: Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical:
-                                    MediaQuery.of(context).size.height *
-                                        0.01),
+                                        MediaQuery.of(context).size.height *
+                                            0.01),
                                 child: Image(
-                                    height: MediaQuery.of(context).size.height * 0.2,
-                                    width:
-                                    MediaQuery.of(context).size.width *
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
+                                    width: MediaQuery.of(context).size.width *
                                         0.37,
-                                    image: NetworkImage(ApiMovieManager
-                                        .apiMovieTMDBImageUrl +
-                                        snapshot.data!.results![index]
-                                            .posterPath!)),
+                                    image: NetworkImage(
+                                        ApiMovieManager.apiMovieTMDBImageUrl +
+                                            snapshot.data!.results![index]
+                                                .posterPath!)),
                               ),
                             ),
                             Expanded(
                               child: Text(
                                 textAlign: TextAlign.center,
                                 snapshot.data!.results![index].title!,
-                                style:
-                                Theme.of(context).textTheme.labelSmall,
+                                style: Theme.of(context).textTheme.labelSmall,
                               ),
                             )
                           ],
                         );
                       } else {
-                        return const Center(
-                            child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   );
