@@ -5,14 +5,11 @@ import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'home_screen/home_page.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 
-Future<void> main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => AppProvider(),
@@ -61,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       locale: Locale(provider.currentLocale),
       debugShowCheckedModeBanner: false,
       routes: {
-        HomePage.routeName: (_) => HomePage(),
+        HomePage.routeName: (_) => const HomePage(),
         PopularMovieDetails.routeName: (_) => const PopularMovieDetails(),
       },
       initialRoute: HomePage.routeName,
