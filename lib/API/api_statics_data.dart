@@ -57,7 +57,7 @@ class ApiMovieManager {
     return apiCategoryDM;
   }
 
-  static Future<ApiCategoryMovieListDM> getCategoryMovie() async {
+  static Future<ApiCategoryMovieListDM> getCategoryMovieList() async {
     Uri url = Uri.http(
         apiMovieBaseUrl, apiMovieTopRatedUrl, {"api_key": apiKeyMovie});
     Response response = await get(url);

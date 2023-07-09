@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'app_material.dart';
 
 abstract class AppTheme {
-  
-  
-  
+
   static ThemeData lightTheme = ThemeData(
-    
     colorScheme: ColorScheme.light(background: AppColor.blackColor),
     primaryColorLight: AppColor.greyColor,
     scaffoldBackgroundColor: AppColor.blackColor,
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: AppColor.whiteColor, fontSize: 30),
-      bodyMedium: TextStyle(color: AppColor.greyColor, fontSize: 25),
+      bodyMedium: TextStyle(color: AppColor.whiteColor, fontSize: 25),
       bodySmall: TextStyle(color: AppColor.greyColor, fontSize: 15),
       labelSmall: TextStyle(
         color: AppColor.whiteColor,
@@ -39,8 +35,8 @@ abstract class AppTheme {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       selectedItemColor: AppColor.darkYellowColor,
-      selectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 25),
-      unselectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 15),
+      selectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 13),
+      unselectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 10),
     ),
   );
 
@@ -50,7 +46,7 @@ abstract class AppTheme {
     scaffoldBackgroundColor: AppColor.blackColor,
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: AppColor.whiteColor, fontSize: 30),
-      bodyMedium: TextStyle(color: AppColor.greyColor, fontSize: 25),
+      bodyMedium: TextStyle(color: AppColor.whiteColor, fontSize: 25),
       bodySmall: TextStyle(fontSize: 20, color: AppColor.greyColor),
       labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15),
     ),
@@ -72,6 +68,8 @@ abstract class AppTheme {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       selectedItemColor: AppColor.darkYellowColor,
+      selectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 13),
+      unselectedLabelStyle: TextStyle(color: AppColor.greyColor, fontSize: 10),
     ),
   );
 }
