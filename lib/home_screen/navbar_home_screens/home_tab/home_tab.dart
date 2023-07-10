@@ -165,18 +165,17 @@ class _HomeTabState extends State<HomeTab> {
                           width: width * 0.4,
                           padding:
                               EdgeInsets.symmetric(vertical: height * 0.01),
-                          child: Stack(children: [
-                            Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: height * 0.01),
-                                  child: Image(
-                                      width: width * 0.37,
-                                      image: NetworkImage(
-                                          ApiMovieManager.apiMovieTMDBImageUrl +
-                                              snapshot.data!.results![index]
-                                                  .posterPath!)),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: height * 0.01),
+                                child: Image(
+                                    width: width * 0.37,
+                                    image: NetworkImage(
+                                        ApiMovieManager.apiMovieTMDBImageUrl +
+                                            snapshot.data!.results![index]
+                                                .posterPath!)),
                                 ),
                                 Text(
                                   textAlign: TextAlign.center,
@@ -185,15 +184,6 @@ class _HomeTabState extends State<HomeTab> {
                                 )
                               ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: height * .01),
-                              child: Icon(
-                                Icons.bookmark_add_outlined,
-                                size: 30,
-                                color: AppColor.yellowColor,
-                              ),
-                            ),
-                          ]),
                         );
                       },
                     ),

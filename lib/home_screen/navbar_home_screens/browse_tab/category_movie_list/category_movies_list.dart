@@ -4,6 +4,7 @@ import 'package:movies/repo/movie_category_list_repo.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../API/api_statics_data.dart';
+import '../../../../theme/app_material.dart';
 
 class CategoryMoviesList extends StatefulWidget {
   static String routeName = "CategoryMoviesList";
@@ -85,28 +86,38 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
           mainAxisSpacing: height * 0.02),
       itemCount: categoryListRepo.results.length,
       itemBuilder: (context, index) {
-        return Column(
-          children: [
-            Expanded(
-              flex: 11,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: height * 0.01),
-                child: Image(
-                    height: height * 0.2,
-                    width: width * 0.37,
-                    image: NetworkImage(ApiMovieManager.apiMovieTMDBImageUrl +
-                        categoryListRepo.results[index].posterPath!)),
+        return Stack(children: [
+          Column(
+            children: [
+              Expanded(
+                flex: 11,
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: height * 0.01),
+                  child: Image(
+                      height: height * 0.2,
+                      width: width * 0.37,
+                      image: NetworkImage(ApiMovieManager.apiMovieTMDBImageUrl +
+                          categoryListRepo.results[index].posterPath!)),
+                ),
               ),
+              Expanded(
+                child: Text(
+                  textAlign: TextAlign.center,
+                  categoryListRepo.results[index].title!,
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              )
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: height * .01),
+            child: Icon(
+              Icons.bookmark_add_outlined,
+              size: 30,
+              color: AppColor.yellowColor,
             ),
-            Expanded(
-              child: Text(
-                textAlign: TextAlign.center,
-                categoryListRepo.results[index].title!,
-                style: Theme.of(context).textTheme.labelSmall,
-              ),
-            )
-          ],
-        );
+          ),
+        ]);
       },
     );
   }
