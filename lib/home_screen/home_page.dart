@@ -11,7 +11,6 @@ import 'navbar_home_screens/watch_list_tab/watch_list_tab.dart';
 class HomePage extends StatefulWidget {
   static String routeName = "homepage";
 
-  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,11 +18,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List navbar = [
-    const HomeTab(),
-    const SearchTab(),
-    const BrowseTab(),
-    const WatchListTab(),
-    const AppSettings()
+     HomeTab(),
+     SearchTab(),
+     BrowseTab(),
+     WatchListTab(),
+     AppSettings()
   ];
   int navBarPage = 0;
 

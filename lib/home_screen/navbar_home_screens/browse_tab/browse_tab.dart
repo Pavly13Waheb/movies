@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:movies/repo/movie_category_list_view_model.dart';
-import 'package:movies/repo/movie_category_view_model.dart';
+import 'package:movies/repo/movie_category_list_repo.dart';
+import 'package:movies/repo/movie_category_repo.dart';
 import 'package:movies/theme/app_material.dart';
 
 class BrowseTab extends StatefulWidget {
-  const BrowseTab({super.key});
-
   @override
   State<BrowseTab> createState() => _BrowseTabState();
 }
 
 class _BrowseTabState extends State<BrowseTab> {
-  MovieCategoryViewModel browseTab = MovieCategoryViewModel();
-  MovieCategoryListViewModel browsTabList = MovieCategoryListViewModel();
+
+
+  MovieCategoryRepo browseTab = MovieCategoryRepo();
+MovieCategoryListRepo browsTabList = MovieCategoryListRepo();
+
 
   @override
   void initState() {
@@ -22,15 +23,33 @@ class _BrowseTabState extends State<BrowseTab> {
     super.initState();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return categoryModel(width, height);
+    return  test(width, height);
   }
 
+  test([var width, var height]) {
+    if (browseTab.genres.isNotEmpty && browsTabList.results.isNotEmpty) {
+      print("test====================");
+       return categoryModel(width, height);
+    } else if (browseTab.genres.isEmpty && browsTabList.results.isEmpty) {
+  return  Center(child: InkWell(onTap: () {
+    setState(() {
+    });
+  },child: const CircularProgressIndicator()));
+    } else {
+      return  test(width, height);
+    }
+  }
+
+
   Widget categoryModel(var width, var height) {
-    return GridView.builder(
+    return
+      GridView.builder(
       gridDelegate:
           const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemCount: browseTab.genres.length,
@@ -47,10 +66,11 @@ class _BrowseTabState extends State<BrowseTab> {
                 height: height * 0.18,
               ),
               Expanded(
-                  child: Text(
-                browseTab.genres[index].name!,
-                style: Theme.of(context).textTheme.bodyMedium,
-              )),
+                child: Text(
+                  browseTab.genres[index].name!,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
             ],
           ),
         );

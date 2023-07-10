@@ -14,7 +14,6 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
@@ -28,7 +27,7 @@ class _HomeTabState extends State<HomeTab> {
           Expanded(
             child: Container(
               padding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).size.height * 0.01),
+                  vertical: MediaQuery.of(context).size.height * 0.03),
               color: AppColor.greyColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,6 +63,7 @@ class _HomeTabState extends State<HomeTab> {
             );
           } else if (snapshot.hasData) {
             return ListView.builder(
+              itemCount: snapshot.data!.results!.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Stack(
@@ -111,11 +111,15 @@ class _HomeTabState extends State<HomeTab> {
                                     overflow: TextOverflow.fade,
                                   ),
                                 ),
-                                Text(
-                                  "releaseDate : ${snapshot.data!.results![index].releaseDate.toString()}   "
-                                  "voteAverage : ${snapshot.data!.results![index].voteAverage.toString()}   "
-                                  "voteCount : ${snapshot.data!.results![index].voteCount.toString()}   ",
-                                  style: Theme.of(context).textTheme.labelSmall,
+                                Container(
+                                  width: width * .3,
+                                  child: Text(
+                                    "releaseDate : ${snapshot.data!.results![index].releaseDate.toString()}   "
+                                    "voteAverage : ${snapshot.data!.results![index].voteAverage.toString()}   "
+                                    "voteCount : ${snapshot.data!.results![index].voteCount.toString()}   ",
+                                    style:
+                                        Theme.of(context).textTheme.labelSmall,
+                                  ),
                                 ),
                               ],
                             ),
@@ -136,57 +140,71 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget topRatedMovieView(var height, var width) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          FutureBuilder(
-            future: ApiMovieManager.getTopRatedData(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text(
-                    "ERROR",
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                );
-              } else if (snapshot.hasData) {
-                return Container(
-                  height: height,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        width: width * 0.4,
-                        padding: EdgeInsets.symmetric(vertical: height * 0.01),
-                        child: Column(
-                          children: [
-                            Container(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: height * 0.01),
-                              child: Image(
-                                  width: width * 0.37,
-                                  image: NetworkImage(
-                                      ApiMovieManager.apiMovieTMDBImageUrl +
-                                          snapshot.data!.results![index]
-                                              .posterPath!)),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: width * .02),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            FutureBuilder(
+              future: ApiMovieManager.getTopRatedData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(
+                      "ERROR",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  return SizedBox(
+                    height: height,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: width * 0.4,
+                          padding:
+                              EdgeInsets.symmetric(vertical: height * 0.01),
+                          child: Stack(children: [
+                            Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: height * 0.01),
+                                  child: Image(
+                                      width: width * 0.37,
+                                      image: NetworkImage(
+                                          ApiMovieManager.apiMovieTMDBImageUrl +
+                                              snapshot.data!.results![index]
+                                                  .posterPath!)),
+                                ),
+                                Text(
+                                  textAlign: TextAlign.center,
+                                  snapshot.data!.results![index].title!,
+                                  style: Theme.of(context).textTheme.labelSmall,
+                                )
+                              ],
                             ),
-                            Text(
-                              textAlign: TextAlign.center,
-                              snapshot.data!.results![index].title!,
-                              style: Theme.of(context).textTheme.labelSmall,
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            },
-          )
-        ],
+                            Padding(
+                              padding: EdgeInsets.only(top: height * .01),
+                              child: Icon(
+                                Icons.bookmark_add_outlined,
+                                size: 30,
+                                color: AppColor.yellowColor,
+                              ),
+                            ),
+                          ]),
+                        );
+                      },
+                    ),
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            )
+          ],
+        ),
       ),
     );
   }
