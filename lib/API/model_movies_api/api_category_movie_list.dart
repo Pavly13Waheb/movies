@@ -16,7 +16,7 @@ class ApiCategoryMovieListDM {
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results?.add(CategoryResultsDM.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -24,7 +24,7 @@ class ApiCategoryMovieListDM {
   }
 
   int? page;
-  List<Results>? results;
+  List<CategoryResultsDM>? results;
   int? totalPages;
   int? totalResults;
 
@@ -55,8 +55,8 @@ class ApiCategoryMovieListDM {
 /// vote_average : 6.5
 /// vote_count : 312
 
-class Results {
-  Results({
+class CategoryResultsDM {
+  CategoryResultsDM({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -73,7 +73,7 @@ class Results {
     this.voteCount,
   });
 
-  Results.fromJson(dynamic json) {
+  CategoryResultsDM.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];

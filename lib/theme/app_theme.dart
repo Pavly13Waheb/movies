@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_material.dart';
 
 abstract class AppTheme {
@@ -18,12 +19,14 @@ abstract class AppTheme {
       ),
     ),
     appBarTheme: AppBarTheme(
-      toolbarHeight: 80,
+      toolbarHeight: 50,
       centerTitle: true,
-      color: AppColor.whiteColor,
+      color: AppColor.greyColor,
       shadowColor: Colors.transparent,
       titleTextStyle: TextStyle(
-          color: AppColor.greyColor, fontSize: 30, fontWeight: FontWeight.bold),
+          color: AppColor.whiteColor,
+          fontSize: 30,
+          fontWeight: FontWeight.bold),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),
@@ -51,7 +54,7 @@ abstract class AppTheme {
       labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15),
     ),
     appBarTheme: AppBarTheme(
-      toolbarHeight: 80,
+      toolbarHeight: 50,
       centerTitle: true,
       color: AppColor.greyColor,
       shadowColor: Colors.transparent,
