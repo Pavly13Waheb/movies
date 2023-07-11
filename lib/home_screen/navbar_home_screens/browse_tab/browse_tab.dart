@@ -4,8 +4,7 @@ import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list_args.dart';
 import 'package:movies/theme/app_material.dart';
 import 'package:provider/provider.dart';
-
-import 'category_movie_list/view_models/movie_category_view_model.dart';
+import '../../../repo/movie_category_repo.dart';
 
 class BrowseTab extends StatefulWidget {
   @override
