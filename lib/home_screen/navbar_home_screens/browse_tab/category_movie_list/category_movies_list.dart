@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list_args.dart';
-import 'package:movies/repo/movie_category_list_repo.dart';
+import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/view_models/movie_category_list_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../API/api_statics_data.dart';
