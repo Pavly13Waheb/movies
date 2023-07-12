@@ -6,7 +6,6 @@ import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'home_screen/home_page.dart';
 import 'home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 
