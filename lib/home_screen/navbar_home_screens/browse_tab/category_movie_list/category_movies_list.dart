@@ -15,21 +15,14 @@ class CategoryMoviesList extends StatefulWidget {
 class _CategoryMoviesListState extends State<CategoryMoviesList> {
   MovieCategoryListRepo categoryListRepo = MovieCategoryListRepo();
 
-  @override
-  void initState() {
-    categoryListRepo.getResults();
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     var arg =
         ModalRoute.of(context)?.settings.arguments as CategoryMoviesListArgs;
-    num id = arg.id;
+    int id = arg.id;
     String name = arg.name;
-
-    //List<CategoryResultsDM> categoryMoviesListBuilder=[];
+    categoryListRepo.getResults(id.toString());
 
     return ChangeNotifierProvider(
       create: (context) => categoryListRepo,
@@ -40,28 +33,17 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
             title: Text(name),
             centerTitle: true,
           ),
-          body: checkCategoryList(),
+          body: checkCategoryList( ),
         );
       },
     );
   }
 
-  // idLoop(int index, int id,List moviesListBuilder) {
-  //   for (int i = 0; i <= categoryListRepo.results.length; i++) {
-  //     for(int j = 0 ; j<= categoryListRepo.results[index].genreIds!.length;j++){
-  //     if (id == categoryListRepo.results[index].genreIds![index]) {
-  //       return
-  //         moviesListBuilder.add(categoryListRepo.results[index])
-  //        ;
-  //     } else {
-  //       return idLoop(index, id,moviesListBuilder);
-  //     }}
-  //   }
-  // }
 
-  checkCategoryList() {
+
+  checkCategoryList( ) {
     if (categoryListRepo.results.isNotEmpty) {
-      return categoryMoviesListModel();
+      return categoryMoviesListModel( );
     } else if (categoryListRepo.results.isEmpty) {
       return Center(
           child: InkWell(
@@ -74,7 +56,7 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
     }
   }
 
-  Widget categoryMoviesListModel() {
+  Widget categoryMoviesListModel( ) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
@@ -105,7 +87,10 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                   categoryListRepo.results[index].title!,
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
-              )
+              ),
+             // InkWell(child: Text("TRY",style: Theme.of(context).textTheme.bodyLarge,),onTap: () {
+               // idLoop(index, id, moviesListBuilder);
+             // },)
             ],
           ),
           Padding(
@@ -120,4 +105,6 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
       },
     );
   }
+
 }
+
