@@ -2,6 +2,7 @@
 class ApiCategoriesMovieDM {
   ApiCategoriesMovieDM({
     this.genres,
+    this.status_message
   });
 
   ApiCategoriesMovieDM.fromJson(dynamic json) {
@@ -14,6 +15,8 @@ class ApiCategoriesMovieDM {
   }
 
   List<Genres>? genres;
+  String? status_message;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
