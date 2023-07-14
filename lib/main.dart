@@ -15,13 +15,12 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => AppProvider(),
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -42,39 +41,44 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     provider = Provider.of(context);
 
-    return MaterialApp(
-      themeMode: provider.currentTheme,
-      darkTheme: AppTheme.darkTheme,
-      theme: AppTheme.lightTheme,
-      title: 'Localizations Sample App',
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        AppLocalizations.delegate
-      ],
-      supportedLocales: const [
-        Locale('en'), // English
-        Locale('ar'), // Arabic
-      ],
-      locale: Locale(provider.currentLocale),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        HomePage.routeName: (_) => HomePage(),
-        PopularMovieDetails.routeName: (_) => PopularMovieDetails(),
-        CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
-        MovieDetails.routeName: (_) => MovieDetails(),
+    return ChangeNotifierProvider(
+      create: (context) => provider,
+      builder: (context, child) {
+        return MaterialApp(
+          themeMode: provider.currentTheme,
+          darkTheme: AppTheme.darkTheme,
+          theme: AppTheme.lightTheme,
+          title: 'Localizations Sample App',
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            AppLocalizations.delegate
+          ],
+          supportedLocales: const [
+            Locale('en'), // English
+            Locale('ar'), // Arabic
+          ],
+          locale: Locale(provider.currentLocale),
+          debugShowCheckedModeBanner: false,
+          routes: {
+            HomePage.routeName: (_) => HomePage(),
+            PopularMovieDetails.routeName: (_) => PopularMovieDetails(),
+            CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
+            MovieDetails.routeName: (_) => MovieDetails(),
+          },
+          initialRoute: HomePage.routeName,
+        );
       },
-      initialRoute: HomePage.routeName,
     );
   }
 
-  iniSharedPref() async {
+  void iniSharedPref() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String lang = prefs.getString("lang") ?? "en";
-    String theme = prefs.getString("theme") ?? "light";
+    String theme = prefs.getString("theme") ?? "dark";
 
     provider.changeLanguage(lang);
-    provider.changeTheme(theme == "light" ? ThemeMode.light : ThemeMode.dark);
+    provider.changeTheme(theme == "dark" ? ThemeMode.dark : ThemeMode.light);
   }
 }
