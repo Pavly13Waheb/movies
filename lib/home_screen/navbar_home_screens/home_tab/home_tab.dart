@@ -37,13 +37,14 @@ class _HomeTabState extends State<HomeTab> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              child: ChangeNotifierProvider(
-            create: (context) => moviesPopularRepo,
-            builder: (context, child) {
-              moviesPopularRepo = Provider.of(context);
-              return checkPopularList();
-            },
-          )),
+            child: ChangeNotifierProvider(
+              create: (context) => moviesPopularRepo,
+              builder: (context, child) {
+                moviesPopularRepo = Provider.of(context);
+                return checkPopularList();
+              },
+            ),
+          ),
           Expanded(
             child: ChangeNotifierProvider(
               create: (context) => moviesTopRatedRepo,
@@ -137,17 +138,18 @@ class _HomeTabState extends State<HomeTab> {
                                         .results[index].originalLanguage,
                                     originalTitle: moviesPopularRepo
                                         .results[index].originalTitle,
-                                    overview: moviesPopularRepo
-                                        .results[index].overview,
-                                    posterPath: moviesPopularRepo
-                                        .results[index].posterPath,
-                                    releaseDate: moviesPopularRepo
-                                        .results[index].releaseDate,
-                                    voteAverage: moviesPopularRepo
-                                        .results[index].voteAverage,
-                                    voteCount: moviesPopularRepo
-                                        .results[index].voteCount,
-                                  ));
+                                  overview:
+                                      moviesPopularRepo.results[index].overview,
+                                  posterPath: moviesPopularRepo
+                                      .results[index].posterPath,
+                                  releaseDate: moviesPopularRepo
+                                      .results[index].releaseDate,
+                                  voteAverage: moviesPopularRepo
+                                      .results[index].voteAverage,
+                                  voteCount: moviesPopularRepo
+                                      .results[index].voteCount,
+                                ),
+                              );
                             },
                             child: Text(
                               moviesPopularRepo.results[index].title.toString(),
@@ -221,10 +223,37 @@ class _HomeTabState extends State<HomeTab> {
                                       moviesTopRatedRepo
                                           .results[index].posterPath!)),
                         ),
-                        Text(
-                          textAlign: TextAlign.center,
-                          moviesTopRatedRepo.results[index].title!,
-                          style: Theme.of(context).textTheme.labelSmall,
+                        InkWell(
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            moviesTopRatedRepo.results[index].title!,
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              PopularMovieDetails.routeName,
+                              arguments: MovieDetailsArg(
+                                title: moviesTopRatedRepo.results[index].title,
+                                backdropPath: moviesTopRatedRepo
+                                    .results[index].backdropPath,
+                                originalLanguage: moviesTopRatedRepo
+                                    .results[index].originalLanguage,
+                                originalTitle: moviesTopRatedRepo
+                                    .results[index].originalTitle,
+                                overview:
+                                    moviesTopRatedRepo.results[index].overview,
+                                posterPath: moviesTopRatedRepo
+                                    .results[index].posterPath,
+                                releaseDate: moviesTopRatedRepo
+                                    .results[index].releaseDate,
+                                voteAverage: moviesTopRatedRepo
+                                    .results[index].voteAverage,
+                                voteCount:
+                                    moviesTopRatedRepo.results[index].voteCount,
+                              ),
+                            );
+                          },
                         )
                       ],
                     ),
