@@ -52,18 +52,23 @@ class _MovieDetailsState extends State<MovieDetails> {
       String? title,
       num? voteAverage,
       num? voteCount) {
-    return Container(
-      color: AppColor.greyColor,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height * 0.02),
-            width: MediaQuery.of(context).size.width,
-            child: Image(
-              image: NetworkImage(
-                ApiMovieManager.apiMovieTMDBImageUrl + backdropPath.toString(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title!),
+        centerTitle: true,
+      ),
+      body: Container(
+        color: AppColor.greyColor,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.02),
+              width: MediaQuery.of(context).size.width,
+              child: Image(
+                image: NetworkImage(
+                  ApiMovieManager.apiMovieTMDBImageUrl + backdropPath.toString(),
               ),
             ),
           ),
@@ -91,26 +96,27 @@ class _MovieDetailsState extends State<MovieDetails> {
                     children: [
                       Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.02),
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            overview.toString(),
-                            style: Theme.of(context).textTheme.labelSmall,
-                          )),
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.02),
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              overview.toString(),
+                              style: Theme.of(context).textTheme.labelSmall,
+                            )),
                       Text(
                         "releaseDate : ${releaseDate.toString()}  "
-                        "voteAverage : ${voteAverage.toString()}  "
-                        "voteCount : ${voteCount.toString()}",
-                        style: Theme.of(context).textTheme.labelSmall,
-                      ),
-                    ],
+                          "voteAverage : ${voteAverage.toString()}  "
+                          "voteCount : ${voteCount.toString()}",
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

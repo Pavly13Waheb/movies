@@ -5,13 +5,13 @@ import 'app_material.dart';
 abstract class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
-    colorScheme: ColorScheme.light(background: AppColor.blackColor),
-    primaryColorLight: AppColor.greyColor,
-    scaffoldBackgroundColor: AppColor.blackColor,
+    colorScheme: ColorScheme.light(background: AppColor.whiteColor),
+    primaryColorLight: AppColor.whiteColor,
+    scaffoldBackgroundColor: AppColor.greyColor,
     textTheme: TextTheme(
-      bodyLarge: TextStyle(color: AppColor.whiteColor, fontSize: 30),
-      bodyMedium: TextStyle(color: AppColor.whiteColor, fontSize: 25),
-      bodySmall: TextStyle(color: AppColor.greyColor, fontSize: 15),
+      bodyLarge: TextStyle(color: AppColor.blackColor, fontSize: 30),
+      bodyMedium: TextStyle(color: AppColor.blackColor, fontSize: 25),
+      bodySmall: TextStyle(color: AppColor.blackColor, fontSize: 15),
       labelSmall: TextStyle(
         color: AppColor.whiteColor,
         fontSize: 15,
@@ -19,14 +19,12 @@ abstract class AppTheme {
       ),
     ),
     appBarTheme: AppBarTheme(
-      toolbarHeight: 50,
+      toolbarHeight: 30,
       centerTitle: true,
-      color: AppColor.greyColor,
+      color: AppColor.whiteColor,
       shadowColor: Colors.transparent,
       titleTextStyle: TextStyle(
-          color: AppColor.whiteColor,
-          fontSize: 30,
-          fontWeight: FontWeight.bold),
+          color: AppColor.greyColor, fontSize: 25, fontWeight: FontWeight.bold),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),
@@ -54,12 +52,12 @@ abstract class AppTheme {
       labelSmall: TextStyle(color: AppColor.whiteColor, fontSize: 15),
     ),
     appBarTheme: AppBarTheme(
-      toolbarHeight: 50,
+      toolbarHeight: 30,
       centerTitle: true,
       color: AppColor.greyColor,
       shadowColor: Colors.transparent,
       titleTextStyle: const TextStyle(
-          color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+          color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),

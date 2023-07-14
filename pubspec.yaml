@@ -46,6 +46,7 @@ dependencies:
   http: ^1.1.0
   cloud_firestore: ^4.8.2
   firebase_core: ^2.14.0
+  hive: ^2.2.3
 
 
 

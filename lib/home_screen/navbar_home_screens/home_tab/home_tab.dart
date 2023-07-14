@@ -30,45 +30,41 @@ class _HomeTabState extends State<HomeTab> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return Container(
-      width: width,
-      padding: EdgeInsets.only(top: height * 0.05),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: ChangeNotifierProvider(
-              create: (context) => moviesPopularRepo,
-              builder: (context, child) {
-                moviesPopularRepo = Provider.of(context);
-                return checkPopularList();
-              },
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: ChangeNotifierProvider(
+            create: (context) => moviesPopularRepo,
+            builder: (context, child) {
+              moviesPopularRepo = Provider.of(context);
+              return checkPopularList();
+            },
           ),
-          Expanded(
-            child: ChangeNotifierProvider(
-              create: (context) => moviesTopRatedRepo,
-              builder: (context, child) {
-                moviesTopRatedRepo = Provider.of(context);
-                return Container(
-                  padding: EdgeInsets.symmetric(vertical: height * 0.03),
-                  color: AppColor.greyColor,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Top Rated",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Expanded(child: checkTopRatedList()),
-                    ],
-                  ),
-                );
-              },
-            ),
+        ),
+        Expanded(
+          child: ChangeNotifierProvider(
+            create: (context) => moviesTopRatedRepo,
+            builder: (context, child) {
+              moviesTopRatedRepo = Provider.of(context);
+              return Container(
+                padding: EdgeInsets.symmetric(vertical: height * 0.03),
+                color: AppColor.greyColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Top Rated",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Expanded(child: checkTopRatedList()),
+                  ],
+                ),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
