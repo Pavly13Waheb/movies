@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
 import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
-import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_navigator_args.dart';
 import 'package:movies/theme/app_material.dart';
+
+import '../../model/movie_details/movie_details_arg.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -98,10 +99,26 @@ class _HomeTabState extends State<HomeTab> {
                                   onTap: () {
                                     Navigator.pushNamed(
                                         context, PopularMovieDetails.routeName,
-                                        arguments: PopularNavigatorArgs(
-                                            id: snapshot
-                                                .data!.results![index].id!,
-                                            index: index));
+                                        arguments: MovieDetailsArg(
+                                          title: snapshot
+                                              .data!.results![index].title,
+                                          backdropPath: snapshot.data!
+                                              .results![index].backdropPath,
+                                          originalLanguage: snapshot.data!
+                                              .results![index].originalLanguage,
+                                          originalTitle: snapshot.data!
+                                              .results![index].originalTitle,
+                                          overview: snapshot
+                                              .data!.results![index].overview,
+                                          posterPath: snapshot
+                                              .data!.results![index].posterPath,
+                                          releaseDate: snapshot.data!
+                                              .results![index].releaseDate,
+                                          voteAverage: snapshot.data!
+                                              .results![index].voteAverage,
+                                          voteCount: snapshot
+                                              .data!.results![index].voteCount,
+                                        ));
                                   },
                                   child: Text(
                                     snapshot.data!.results![index].title

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list.dart';
+import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list.dart';
 import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'home_screen/home_page.dart';
+import 'home_screen/model/movie_details/movie_details.dart';
 import 'home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 
 void main() {
@@ -59,8 +61,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       routes: {
         HomePage.routeName: (_) => HomePage(),
-        PopularMovieDetails.routeName: (_) => const PopularMovieDetails(),
-        CategoryMoviesList.routeName: (_) => CategoryMoviesList()
+        PopularMovieDetails.routeName: (_) => PopularMovieDetails(),
+        CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
+        MovieDetails.routeName: (_) => MovieDetails(),
       },
       initialRoute: HomePage.routeName,
     );

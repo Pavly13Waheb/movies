@@ -1,113 +1,121 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
-import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_navigator_args.dart';
 import 'package:movies/theme/app_material.dart';
 
-class PopularMovieDetails extends StatelessWidget {
+import '../../../model/movie_details/movie_details_arg.dart';
+
+class PopularMovieDetails extends StatefulWidget {
   static String routeName = "RouteName";
 
-  const PopularMovieDetails({super.key});
+  @override
+  State<PopularMovieDetails> createState() => _PopularMovieDetailsState();
+}
 
+class _PopularMovieDetailsState extends State<PopularMovieDetails> {
   @override
   Widget build(BuildContext context) {
-    var arg =
-        ModalRoute.of(context)?.settings.arguments as PopularNavigatorArgs;
-    num id = arg.id;
-    int index = arg.index;
+    var populareArg =
+        ModalRoute.of(context)?.settings.arguments as MovieDetailsArg;
+
+    String? backdropPath = populareArg.backdropPath;
+    String? originalLanguage = populareArg.originalLanguage;
+    String? originalTitle = populareArg.originalTitle;
+    String? overview = populareArg.overview;
+    String? posterPath = populareArg.posterPath;
+    String? releaseDate = populareArg.releaseDate;
+    String? title = populareArg.title;
+    num? voteAverage = populareArg.voteAverage;
+    num? voteCount = populareArg.voteCount;
 
     return Container(
         padding:
             EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-        child: getPopularMovieDetails(index, id));
+        child: getPopularMovieDetails(
+          backdropPath,
+          originalLanguage,
+          originalTitle,
+          overview,
+          posterPath,
+          releaseDate,
+          title,
+          voteAverage,
+          voteCount,
+        ));
   }
 
-  Widget getPopularMovieDetails(int index, num id) {
-    return FutureBuilder(
-      future: ApiMovieManager.getPopularData(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              "ERROR",
-              style: Theme.of(context).textTheme.bodyMedium,
+  Widget getPopularMovieDetails(
+      String? backdropPath,
+      String? originalLanguage,
+      String? originalTitle,
+      String? overview,
+      String? posterPath,
+      String? releaseDate,
+      String? title,
+      num? voteAverage,
+      num? voteCount) {
+    return Container(
+      color: AppColor.greyColor,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * 0.02),
+            width: MediaQuery.of(context).size.width,
+            child: Image(
+              image: NetworkImage(
+                ApiMovieManager.apiMovieTMDBImageUrl +
+                      backdropPath.toString(),
+                ),
+              ),
             ),
-          );
-        } else if (snapshot.hasData) {
-          if (snapshot.data!.results![index].id == id) {
-            return Container(
-              color: AppColor.greyColor,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
+            Text(
+              textAlign: TextAlign.center,
+            title.toString(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.03,
+                  vertical: MediaQuery.of(context).size.height * 0.02),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).size.height * 0.02),
-                    width: MediaQuery.of(context).size.width,
-                    child: Image(
-                      image: NetworkImage(
-                        ApiMovieManager.apiMovieTMDBImageUrl +
-                            snapshot.data!.results![index].backdropPath
-                                .toString(),
-                      ),
+                  Image(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    image: NetworkImage(
+                      ApiMovieManager.apiMovieTMDBImageUrl +
+                          posterPath.toString(),
                     ),
                   ),
-                  Text(
-                    textAlign: TextAlign.center,
-                    snapshot.data!.results![index].title.toString(),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.03,
-                        vertical: MediaQuery.of(context).size.height * 0.02),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  Expanded(
+                    child: Column(
                       children: [
-                        Image(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          image: NetworkImage(
-                            ApiMovieManager.apiMovieTMDBImageUrl +
-                                snapshot.data!.results![index].posterPath
-                                    .toString(),
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          MediaQuery.of(context).size.width *
-                                              0.02),
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Text(
-                                    snapshot.data!.results![index].overview
-                                        .toString(),
-                                    style:
-                                        Theme.of(context).textTheme.labelSmall,
-                                  )),
-                              Text(
-                                "releaseDate : ${snapshot.data!.results![index].releaseDate.toString()}  "
-                                "voteAverage : ${snapshot.data!.results![index].voteAverage.toString()}  "
-                                "voteCount : ${snapshot.data!.results![index].voteCount.toString()}",
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
-                            ],
-                          ),
-                        ),
+                        Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                MediaQuery.of(context).size.width *
+                                    0.02),
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              overview.toString(),
+                              style:
+                              Theme.of(context).textTheme.labelSmall,
+                            )),
+                        Text(
+                        "releaseDate : ${releaseDate.toString()}  "
+                        "voteAverage : ${voteAverage.toString()}  "
+                        "voteCount : ${voteCount.toString()}",
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
-            );
-          } else {
-            return getPopularMovieDetails(index, id);
-          }
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
-    );
+            )
+          ],
+        ),
+      );
   }
 }
