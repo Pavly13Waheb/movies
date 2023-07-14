@@ -15,7 +15,7 @@ class ApiPopularDM {
       this.status_message});
 
   num? page;
-  List<ResultsDM>? results;
+  List<PopularResultsDM>? results;
   num? totalPages;
   num? totalResults;
   String? status_code;
@@ -26,7 +26,7 @@ class ApiPopularDM {
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(ResultsDM.fromJson(v));
+        results?.add(PopularResultsDM.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -60,8 +60,8 @@ class ApiPopularDM {
 /// vote_average : 7.3
 /// vote_count : 2093
 
-class ResultsDM {
-  ResultsDM({
+class PopularResultsDM {
+  PopularResultsDM({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -93,7 +93,7 @@ class ResultsDM {
   num? voteAverage;
   num? voteCount;
 
-  ResultsDM.fromJson(dynamic json) {
+  PopularResultsDM.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
