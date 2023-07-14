@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
 import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
-import 'package:movies/repo/movie_populare_repo.dart';
+import 'package:movies/repo/movie_popular_repo.dart';
+import 'package:movies/repo/top_rated_movies_repo.dart';
 import 'package:movies/theme/app_material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +15,12 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   MoviesPopularRepo moviesPopularRepo = MoviesPopularRepo();
+  MoviesTopRatedRepo moviesTopRatedRepo = MoviesTopRatedRepo();
 
   @override
   void initState() {
     moviesPopularRepo.getResults();
+    moviesTopRatedRepo.getResults();
     // TODO: implement initState
     super.initState();
   }
@@ -27,19 +30,26 @@ class _HomeTabState extends State<HomeTab> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return ChangeNotifierProvider(
-      create: (context) => moviesPopularRepo,
-      builder: (context, child) {
-        moviesPopularRepo = Provider.of(context);
-        return Container(
-          width: width,
-          padding: EdgeInsets.only(top: height * 0.05),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: checkPopularList()),
-              Expanded(
-                child: Container(
+    return Container(
+      width: width,
+      padding: EdgeInsets.only(top: height * 0.05),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+              child: ChangeNotifierProvider(
+            create: (context) => moviesPopularRepo,
+            builder: (context, child) {
+              moviesPopularRepo = Provider.of(context);
+              return checkPopularList();
+            },
+          )),
+          Expanded(
+            child: ChangeNotifierProvider(
+              create: (context) => moviesTopRatedRepo,
+              builder: (context, child) {
+                moviesTopRatedRepo = Provider.of(context);
+                return Container(
                   padding: EdgeInsets.symmetric(vertical: height * 0.03),
                   color: AppColor.greyColor,
                   child: Column(
@@ -49,15 +59,15 @@ class _HomeTabState extends State<HomeTab> {
                         "Top Rated",
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      Expanded(child: topRatedMovieView()),
+                      Expanded(child: checkTopRatedList()),
                     ],
                   ),
-                ),
-              ),
-            ],
+                );
+              },
+            ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 
@@ -168,6 +178,21 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
+  checkTopRatedList() {
+    if (moviesPopularRepo.results.isNotEmpty) {
+      return topRatedMovieView();
+    } else if (moviesTopRatedRepo.results.isEmpty) {
+      return Center(
+          child: InkWell(
+              onTap: () {
+                setState(() {});
+              },
+              child: const CircularProgressIndicator()));
+    } else {
+      return checkTopRatedList();
+    }
+  }
+
   Widget topRatedMovieView() {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -176,53 +201,36 @@ class _HomeTabState extends State<HomeTab> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            FutureBuilder(
-              future: ApiMovieManager.getTopRatedData(),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(
-                      "ERROR",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  );
-                } else if (snapshot.hasData) {
-                  return SizedBox(
-                    height: height,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          width: width * 0.4,
+            SizedBox(
+              height: height,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: width * 0.4,
+                    padding: EdgeInsets.symmetric(vertical: height * 0.01),
+                    child: Column(
+                      children: [
+                        Container(
                           padding:
-                          EdgeInsets.symmetric(vertical: height * 0.01),
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: height * 0.01),
-                                child: Image(
-                                    width: width * 0.37,
-                                    image: NetworkImage(
-                                        ApiMovieManager.apiMovieTMDBImageUrl +
-                                            snapshot.data!.results![index]
-                                                .posterPath!)),
-                              ),
-                              Text(
-                                textAlign: TextAlign.center,
-                                snapshot.data!.results![index].title!,
-                                style: Theme.of(context).textTheme.labelSmall,
-                              )
-                            ],
-                          ),
-                        );
-                      },
+                              EdgeInsets.symmetric(vertical: height * 0.01),
+                          child: Image(
+                              width: width * 0.37,
+                              image: NetworkImage(
+                                  ApiMovieManager.apiMovieTMDBImageUrl +
+                                      moviesTopRatedRepo
+                                          .results[index].posterPath!)),
+                        ),
+                        Text(
+                          textAlign: TextAlign.center,
+                          moviesTopRatedRepo.results[index].title!,
+                          style: Theme.of(context).textTheme.labelSmall,
+                        )
+                      ],
                     ),
                   );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
+                },
+              ),
             )
           ],
         ),
