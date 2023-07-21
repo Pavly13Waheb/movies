@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
 import 'package:movies/theme/app_material.dart';
-
 import '../../../model/movie_details/movie_details_arg.dart';
 
 class PopularMovieDetails extends StatefulWidget {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../API/api_statics_data.dart';
 import '../../../../../theme/app_material.dart';
 import 'movie_details_arg.dart';

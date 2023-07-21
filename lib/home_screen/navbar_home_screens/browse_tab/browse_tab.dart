@@ -4,7 +4,6 @@ import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list.dart';
 import 'package:movies/theme/app_material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../repo/movie_category_repo.dart';
 
 class BrowseTab extends StatefulWidget {

@@ -5,7 +5,6 @@ import 'package:movies/repo/movie_popular_repo.dart';
 import 'package:movies/repo/top_rated_movies_repo.dart';
 import 'package:movies/theme/app_material.dart';
 import 'package:provider/provider.dart';
-
 import '../../model/movie_details/movie_details_arg.dart';
 
 class HomeTab extends StatefulWidget {
