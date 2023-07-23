@@ -65,7 +65,9 @@ class _MovieDetailsState extends State<MovieDetails> {
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).size.height * 0.02),
               width: MediaQuery.of(context).size.width,
-              child: Image(
+              child:
+
+              Image(
                 image: NetworkImage(
                   ApiMovieManager.apiMovieTMDBImageUrl + backdropPath.toString(),
               ),

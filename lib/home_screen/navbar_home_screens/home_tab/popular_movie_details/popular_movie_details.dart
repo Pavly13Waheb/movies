@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
 import 'package:movies/theme/app_material.dart';
@@ -80,12 +81,13 @@ class _PopularMovieDetailsState extends State<PopularMovieDetails> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    image: NetworkImage(
-                      ApiMovieManager.apiMovieTMDBImageUrl +
-                          posterPath.toString(),
-                    ),
+                  CachedNetworkImage(
+                    imageUrl: ApiMovieManager.apiMovieTMDBImageUrl +
+                        posterPath.toString(),
+
+                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                        CircularProgressIndicator(value: downloadProgress.progress),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                   Expanded(
                     child: Column(

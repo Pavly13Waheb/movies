@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_statics_data.dart';
 import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
@@ -96,12 +97,14 @@ class _HomeTabState extends State<HomeTab> {
         itemBuilder: (context, index) {
           return Stack(
             children: [
-              Image(
-                width: width,
-                image: NetworkImage(ApiMovieManager.apiMovieTMDBImageUrl +
+              CachedNetworkImage(
+                imageUrl: (ApiMovieManager.apiMovieTMDBImageUrl +
                     moviesPopularRepo.results[index].backdropPath!),
-                fit: BoxFit.fill,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    CircularProgressIndicator(value: downloadProgress.progress),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
+
               Container(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                 child: Row(

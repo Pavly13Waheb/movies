@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,9 +13,15 @@ import 'home_screen/home_page.dart';
 import 'home_screen/model/movie_details/movie_details.dart';
 import 'home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 
-void main() async {
+Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('settings');
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+
 
   runApp(
     ChangeNotifierProvider(
@@ -30,6 +38,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late AppProvider provider;
+
 
   @override
   void initState() {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -54,6 +55,8 @@ class _WatchListTabState extends State<WatchListTab> {
                               MaterialStatePropertyAll(Colors.red)),
                       child: const Text("Put"),
                       onPressed: () {
+
+
                         box.put("key", browstest.genres);
                         print("++++++++++++++Added Hive Key+++++++++++++++++");
                       },
