@@ -40,55 +40,90 @@ class _WatchListTabState extends State<WatchListTab> {
               IconButton(onPressed: () {}, icon: const Icon(Icons.abc))
             ],
           ),
-          body: ValueListenableBuilder(
-            valueListenable: Hive.box('settings').listenable(),
-            builder: (context, box, child) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      style: const ButtonStyle(
-                          textStyle:
-                              MaterialStatePropertyAll(TextStyle(fontSize: 40)),
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.red)),
-                      child: const Text("Put"),
-                      onPressed: () {
+          body: Column(
+            children: [ Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  style: const ButtonStyle(
+                      textStyle:
+                      MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                      backgroundColor:
+                      MaterialStatePropertyAll(Colors.red)),
+                  child: const Text("Put"),
+                  onPressed: () {
 
+                    CollectionReference addListIndex = FirebaseFirestore.instance.collection("L:ist");
+                    addListIndex.doc('dsa').set({"List" :browstest.genres[5]});
 
-                        box.put("key", browstest.genres);
-                        print("++++++++++++++Added Hive Key+++++++++++++++++");
-                      },
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    TextButton(
-                      style: const ButtonStyle(
-                          textStyle:
-                              MaterialStatePropertyAll(TextStyle(fontSize: 40)),
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.red)),
-                      child: const Text("Get"),
-                      onPressed: () async {
-                        bool result =
-                            await InternetConnectionChecker().hasConnection;
-                        if (result == true) {
-                          print('YAY! Free cute dog pics!');
-                          test = browstest.genres;
-                          print(test);
-                        } else {
-                          print('No internet :( Reason:');
-                          var getBox = box.get("key");
-                          print("===================$getBox===============");
-                        }
-                      },
-                    ),
-                  ],
+                  },
                 ),
-              );
-            },
+                const SizedBox(
+                  height: 30,
+                ),
+                TextButton(
+                  style: const ButtonStyle(
+                      textStyle:
+                      MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                      backgroundColor:
+                      MaterialStatePropertyAll(Colors.red)),
+                  child: const Text("Get"),
+                  onPressed: () async {
+                  },
+                ),
+              ],
+            ),SizedBox(height: 20,),
+              ValueListenableBuilder(
+                valueListenable: Hive.box('settings').listenable(),
+                builder: (context, box, child) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          style: const ButtonStyle(
+                              textStyle:
+                                  MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.red)),
+                          child: const Text("Put"),
+                          onPressed: () {
+
+
+                             box.put("key", browstest.genres);
+                             print("++++++++++++++Added Hive Key+++++++++++++++++");
+                          },
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextButton(
+                          style: const ButtonStyle(
+                              textStyle:
+                                  MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.red)),
+                          child: const Text("Get"),
+                          onPressed: () async {
+                            bool result =
+                                await InternetConnectionChecker().hasConnection;
+                            if (result == true) {
+                              print('YAY! Free cute dog pics!');
+                              test = browstest.genres;
+                              print(test);
+                            } else {
+                              print('No internet :( Reason:');
+                              var getBox = box.get("key");
+                              print("===================$getBox===============");
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         );
       },
