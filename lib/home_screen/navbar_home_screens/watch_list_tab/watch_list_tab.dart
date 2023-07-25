@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:movies/API/api_statics_data.dart';
 import 'package:movies/API/model_movies_api/api_category_movie.dart';
 import 'package:movies/repo/movie_category_repo.dart';
 import 'package:provider/provider.dart';
@@ -41,38 +42,41 @@ class _WatchListTabState extends State<WatchListTab> {
             ],
           ),
           body: Column(
-            children: [ Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  style: const ButtonStyle(
-                      textStyle:
-                      MaterialStatePropertyAll(TextStyle(fontSize: 40)),
-                      backgroundColor:
-                      MaterialStatePropertyAll(Colors.red)),
-                  child: const Text("Put"),
-                  onPressed: () {
-
-                    CollectionReference addListIndex = FirebaseFirestore.instance.collection("L:ist");
-                    addListIndex.doc('dsa').set({"List" :browstest.genres[5]});
-
-                  },
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                TextButton(
-                  style: const ButtonStyle(
-                      textStyle:
-                      MaterialStatePropertyAll(TextStyle(fontSize: 40)),
-                      backgroundColor:
-                      MaterialStatePropertyAll(Colors.red)),
-                  child: const Text("Get"),
-                  onPressed: () async {
-                  },
-                ),
-              ],
-            ),SizedBox(height: 20,),
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    style: const ButtonStyle(
+                        textStyle:
+                            MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                        backgroundColor: MaterialStatePropertyAll(Colors.red)),
+                    child: const Text("Put Firebase"),
+                    onPressed: () async {
+                      ApiMovieManager.getCategory();
+                      CollectionReference addListIndex =
+                          FirebaseFirestore.instance.collection("List");
+                      await addListIndex
+                          .doc('dsa')
+                          .set({"List": browstest.genres.toString()});
+                    },
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  TextButton(
+                    style: const ButtonStyle(
+                        textStyle:
+                            MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                        backgroundColor: MaterialStatePropertyAll(Colors.red)),
+                    child: const Text("Get FireBase"),
+                    onPressed: () async {},
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
               ValueListenableBuilder(
                 valueListenable: Hive.box('settings').listenable(),
                 builder: (context, box, child) {
@@ -82,16 +86,15 @@ class _WatchListTabState extends State<WatchListTab> {
                       children: [
                         TextButton(
                           style: const ButtonStyle(
-                              textStyle:
-                                  MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                              textStyle: MaterialStatePropertyAll(
+                                  TextStyle(fontSize: 40)),
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.red)),
-                          child: const Text("Put"),
+                          child: const Text("Put Hive"),
                           onPressed: () {
-
-
-                             box.put("key", browstest.genres);
-                             print("++++++++++++++Added Hive Key+++++++++++++++++");
+                            box.put("key", browstest.genres);
+                            print(
+                                "++++++++++++++Added Hive Key+++++++++++++++++");
                           },
                         ),
                         const SizedBox(
@@ -99,11 +102,11 @@ class _WatchListTabState extends State<WatchListTab> {
                         ),
                         TextButton(
                           style: const ButtonStyle(
-                              textStyle:
-                                  MaterialStatePropertyAll(TextStyle(fontSize: 40)),
+                              textStyle: MaterialStatePropertyAll(
+                                  TextStyle(fontSize: 40)),
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.red)),
-                          child: const Text("Get"),
+                          child: const Text("Get Hive"),
                           onPressed: () async {
                             bool result =
                                 await InternetConnectionChecker().hasConnection;
@@ -114,7 +117,8 @@ class _WatchListTabState extends State<WatchListTab> {
                             } else {
                               print('No internet :( Reason:');
                               var getBox = box.get("key");
-                              print("===================$getBox===============");
+                              print(
+                                  "===================$getBox===============");
                             }
                           },
                         ),
