@@ -38,7 +38,10 @@ class _WatchListTabState extends State<WatchListTab> {
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: const Text(""),
             actions: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.abc))
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.abc),
+              ),
             ],
           ),
           body: Column(
@@ -48,17 +51,20 @@ class _WatchListTabState extends State<WatchListTab> {
                 children: [
                   TextButton(
                     style: const ButtonStyle(
-                        textStyle:
-                            MaterialStatePropertyAll(TextStyle(fontSize: 40)),
-                        backgroundColor: MaterialStatePropertyAll(Colors.red)),
+                      textStyle: MaterialStatePropertyAll(
+                        TextStyle(fontSize: 40),
+                      ),
+                      backgroundColor: MaterialStatePropertyAll(Colors.red),
+                    ),
                     child: const Text("Put Firebase"),
                     onPressed: () async {
                       ApiMovieManager.getCategory();
-                      CollectionReference addListIndex =
+                      CollectionReference addListIndexs =
                           FirebaseFirestore.instance.collection("List");
-                      await addListIndex
+                      await addListIndexs
                           .doc('dsa')
                           .set({"List": browstest.genres.toString()});
+                      print("+++++++++++++++${addListIndexs.doc('dsa')}++++++++++++++");
                     },
                   ),
                   const SizedBox(
@@ -66,11 +72,19 @@ class _WatchListTabState extends State<WatchListTab> {
                   ),
                   TextButton(
                     style: const ButtonStyle(
-                        textStyle:
-                            MaterialStatePropertyAll(TextStyle(fontSize: 40)),
-                        backgroundColor: MaterialStatePropertyAll(Colors.red)),
+                      textStyle: MaterialStatePropertyAll(
+                        TextStyle(fontSize: 40),
+                      ),
+                      backgroundColor: MaterialStatePropertyAll(Colors.red),
+                    ),
                     child: const Text("Get FireBase"),
-                    onPressed: () async {},
+                    onPressed: () async {
+                      var getListIndexs = FirebaseFirestore.instance.collection("List");
+                      getListIndexs.get().then((value) {
+                        print("==================$getListIndexs===================");
+                      },);
+
+                    },
                   ),
                 ],
               ),
@@ -87,14 +101,14 @@ class _WatchListTabState extends State<WatchListTab> {
                         TextButton(
                           style: const ButtonStyle(
                               textStyle: MaterialStatePropertyAll(
-                                  TextStyle(fontSize: 40)),
+                                TextStyle(fontSize: 40),
+                              ),
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.red)),
                           child: const Text("Put Hive"),
                           onPressed: () {
                             box.put("key", browstest.genres);
-                            print(
-                                "++++++++++++++Added Hive Key+++++++++++++++++");
+                            print("++++++++++++Added Hive Key++++++++++++");
                           },
                         ),
                         const SizedBox(
@@ -102,10 +116,12 @@ class _WatchListTabState extends State<WatchListTab> {
                         ),
                         TextButton(
                           style: const ButtonStyle(
-                              textStyle: MaterialStatePropertyAll(
-                                  TextStyle(fontSize: 40)),
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.red)),
+                            textStyle: MaterialStatePropertyAll(
+                              TextStyle(fontSize: 40),
+                            ),
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.red),
+                          ),
                           child: const Text("Get Hive"),
                           onPressed: () async {
                             bool result =
@@ -117,8 +133,7 @@ class _WatchListTabState extends State<WatchListTab> {
                             } else {
                               print('No internet :( Reason:');
                               var getBox = box.get("key");
-                              print(
-                                  "===================$getBox===============");
+                              print("================$getBox============");
                             }
                           },
                         ),
