@@ -19,4 +19,9 @@ class MovieDetailsArg {
       required this.originalTitle,
       required this.originalLanguage,
       required this.voteAverage});
+
+
+
+
+
 }
