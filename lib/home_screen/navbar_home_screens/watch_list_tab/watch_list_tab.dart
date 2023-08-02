@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:movies/API/api_statics_data.dart';
+import 'package:movies/API/api_manager_statics_data.dart';
 import 'package:movies/API/model_movies_api/api_category_movie.dart';
+import 'package:movies/home_screen/navbar_home_screens/watch_list_tab/watch_list_view_model.dart';
 import 'package:movies/repo/movie_category_repo.dart';
 import 'package:provider/provider.dart';
 
@@ -13,137 +14,35 @@ class WatchListTab extends StatefulWidget {
 }
 
 class _WatchListTabState extends State<WatchListTab> {
-  MovieCategoryRepo browstest = MovieCategoryRepo();
 
-  List first = [1, 2, 23, 5, 5, 45, 454, 56, 6, 78, 64, 56, 5];
-  List second = [];
+  WatchListViewModel watchListViewModel = WatchListViewModel();
+
 
   @override
   void initState() {
     // TODO: implement initState
-    browstest.getGenres();
+watchListViewModel.watchListRepo.getDataFromFireStore();
+ApiMovieManager.getTopRatedData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Genres> test = browstest.genres;
+
     return ChangeNotifierProvider(
       create: (context) {
-        return browstest;
+        return watchListViewModel.watchListRepo;
       },
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: const Text(""),
+            title:  Text("watchListViewModel.watchListRepo.watchList[0]"),
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.abc),
-              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.abc))
             ],
           ),
-          body: Column(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    style: const ButtonStyle(
-                      textStyle: MaterialStatePropertyAll(
-                        TextStyle(fontSize: 40),
-                      ),
-                      backgroundColor: MaterialStatePropertyAll(Colors.red),
-                    ),
-                    child: const Text("Put Firebase"),
-                    onPressed: () async {
-                      ApiMovieManager.getCategory();
-                      CollectionReference addListIndexs =
-                          FirebaseFirestore.instance.collection("List");
-                      await addListIndexs
-                          .doc('dsa')
-                          .set({"List": browstest.genres.toString()});
-                      print("+++++++++++++++${addListIndexs.doc('dsa')}++++++++++++++");
-                    },
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  TextButton(
-                    style: const ButtonStyle(
-                      textStyle: MaterialStatePropertyAll(
-                        TextStyle(fontSize: 40),
-                      ),
-                      backgroundColor: MaterialStatePropertyAll(Colors.red),
-                    ),
-                    child: const Text("Get FireBase"),
-                    onPressed: () async {
-                      var getListIndexs = FirebaseFirestore.instance.collection("List");
-                      getListIndexs.get().then((value) {
-                        print("==================$getListIndexs===================");
-                      },);
-
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ValueListenableBuilder(
-                valueListenable: Hive.box('settings').listenable(),
-                builder: (context, box, child) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          style: const ButtonStyle(
-                              textStyle: MaterialStatePropertyAll(
-                                TextStyle(fontSize: 40),
-                              ),
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.red)),
-                          child: const Text("Put Hive"),
-                          onPressed: () {
-                            box.put("key", browstest.genres);
-                            print("++++++++++++Added Hive Key++++++++++++");
-                          },
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        TextButton(
-                          style: const ButtonStyle(
-                            textStyle: MaterialStatePropertyAll(
-                              TextStyle(fontSize: 40),
-                            ),
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.red),
-                          ),
-                          child: const Text("Get Hive"),
-                          onPressed: () async {
-                            bool result =
-                                await InternetConnectionChecker().hasConnection;
-                            if (result == true) {
-                              print('YAY! Free cute dog pics!');
-                              test = browstest.genres;
-                              print(test);
-                            } else {
-                              print('No internet :( Reason:');
-                              var getBox = box.get("key");
-                              print("================$getBox============");
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+          body: Container(),
         );
       },
     );

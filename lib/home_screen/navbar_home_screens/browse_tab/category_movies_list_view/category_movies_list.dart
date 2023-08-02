@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/API/model_movies_api/api_top_rated_data_model.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list_args.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list_view_model.dart';
 import 'package:provider/provider.dart';
-import '../../../../API/api_statics_data.dart';
+import '../../../../API/api_manager_statics_data.dart';
+import '../../../../API/model_movies_api/api_category_movie_list.dart';
 import '../../../../theme/app_material.dart';
 import '../../../model/movie_details/movie_details.dart';
 import '../../../model/movie_details/movie_details_arg.dart';
@@ -17,6 +20,8 @@ class CategoryMoviesList extends StatefulWidget {
 class _CategoryMoviesListState extends State<CategoryMoviesList> {
   //MovieCategoryListRepo categoryListRepo = MovieCategoryListRepo();
   CategoryMoviesListViewModel listViewModel = CategoryMoviesListViewModel();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +81,7 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(
-                          vertical: height * 0.01, horizontal: width * 0.1),
+                         horizontal: width * 0.1),
                       child: Image(
                           height: height * 0.3,
                           width: width * 0.40,
@@ -88,10 +93,14 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                     Padding(
                       padding:
                           EdgeInsets.only(top: height * .01, left: width * .04),
-                      child: Icon(
-                        Icons.bookmark_add_outlined,
-                        size: 30,
-                        color: AppColor.yellowColor,
+                      child: IconButton(icon: Icon(Icons.bookmark_add_outlined,
+                        size: 30,color: AppColor.yellowColor,)
+                        ,
+                         onPressed: () {
+                        CollectionReference movie = FirebaseFirestore.instance.collection("Watch List");
+                        movie.doc(listViewModel
+                            .categoryListRepo.results[index].title).set(CategoryResultsDM().toJson());
+                       },
                       ),
                     ),
                   ],
@@ -101,7 +110,8 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, MovieDetails.routeName,
-                        arguments: MovieDetailsArg(
+                        arguments:
+                        MovieDetailsArg(
                           title: listViewModel
                               .categoryListRepo.results[index].title,
                           backdropPath: listViewModel

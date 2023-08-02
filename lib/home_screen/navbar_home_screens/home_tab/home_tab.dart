@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/API/api_statics_data.dart';
+import 'package:movies/API/api_manager_statics_data.dart';
 import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 import 'package:movies/repo/movie_popular_repo.dart';
 import 'package:movies/repo/top_rated_movies_repo.dart';
