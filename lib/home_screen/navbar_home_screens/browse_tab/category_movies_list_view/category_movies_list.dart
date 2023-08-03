@@ -20,6 +20,12 @@ class CategoryMoviesList extends StatefulWidget {
 class _CategoryMoviesListState extends State<CategoryMoviesList> {
   //MovieCategoryListRepo categoryListRepo = MovieCategoryListRepo();
   CategoryMoviesListViewModel listViewModel = CategoryMoviesListViewModel();
+  @override
+  void initState() {
+    // TODO: implement initState
+    ApiMovieManager.getCategoryMovieList();
+    super.initState();
+  }
 
 
 
@@ -65,7 +71,8 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return GridView.builder(
+    return
+      GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: width * 0.08,
@@ -97,9 +104,11 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                         size: 30,color: AppColor.yellowColor,)
                         ,
                          onPressed: () {
+
                         CollectionReference movie = FirebaseFirestore.instance.collection("Watch List");
                         movie.doc(listViewModel
-                            .categoryListRepo.results[index].title).set(CategoryResultsDM().toJson());
+                            .categoryListRepo.results[index].title).set(listViewModel
+                            .categoryListRepo.results[index].toJson());
                        },
                       ),
                     ),

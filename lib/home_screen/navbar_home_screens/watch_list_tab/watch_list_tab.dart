@@ -1,13 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:movies/API/api_manager_statics_data.dart';
-import 'package:movies/API/model_movies_api/api_category_movie.dart';
 import 'package:movies/home_screen/navbar_home_screens/watch_list_tab/watch_list_view_model.dart';
-import 'package:movies/repo/movie_category_repo.dart';
 import 'package:provider/provider.dart';
+import '../../../theme/app_material.dart';
+import '../../model/movie_details/movie_details.dart';
+import '../../model/movie_details/movie_details_arg.dart';
 
+// ignore: use_key_in_widget_constructors
 class WatchListTab extends StatefulWidget {
   @override
   State<WatchListTab> createState() => _WatchListTabState();
@@ -22,7 +21,6 @@ class _WatchListTabState extends State<WatchListTab> {
   void initState() {
     // TODO: implement initState
 watchListViewModel.watchListRepo.getDataFromFireStore();
-ApiMovieManager.getTopRatedData();
     super.initState();
   }
 
@@ -37,14 +35,105 @@ ApiMovieManager.getTopRatedData();
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title:  Text("watchListViewModel.watchListRepo.watchList[0]"),
+            title:  Text("Watch List" , style: TextStyle(fontSize: 30,color: AppColor.darkYellowColor) ),
             actions: [
               IconButton(onPressed: () {}, icon: const Icon(Icons.abc))
             ],
           ),
-          body: Container(),
+          body: Column(
+            // children: [Text(watchListViewModel.watchListRepo.movieFromFireStoreDocList[0]),
+            //   checkCategoryList(),
+            // ],
+          ),
         );
       },
     );
+  }
+
+  Widget checkCategoryList() {
+    if (watchListViewModel.watchListRepo.movieFromFireStoreDocList.isNotEmpty) {
+      return moviesListFromFireStore();
+    } else if (watchListViewModel.watchListRepo.movieFromFireStoreDocList.isEmpty) {
+      return Center(
+          child: InkWell(
+              onTap: () {
+                setState(() {});
+              },
+              child: const CircularProgressIndicator()));
+    } else {
+      return checkCategoryList();
+    }
+  }
+  Widget moviesListFromFireStore() {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
+    return
+      GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: width * 0.08,
+            mainAxisSpacing: height * 0.02),
+        itemCount: watchListViewModel.watchListRepo.movieFromFireStoreDocList.length,
+        itemBuilder: (context, index) {
+          return Stack(children: [
+            Column(
+              children: [
+                Expanded(
+                  flex: 11,
+                  child: Stack(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.1),
+                        child: Image(
+                            height: height * 0.3,
+                            width: width * 0.40,
+                            image: NetworkImage(
+                                ApiMovieManager.apiMovieTMDBImageUrl +
+                                    watchListViewModel.watchListRepo.movieFromFireStoreDocList[index]
+                                        .posterPath),),
+
+                      ),
+                      Padding(
+                        padding:
+                        EdgeInsets.only(top: height * .01, left: width * .04),
+                        child: IconButton(icon: Icon(Icons.bookmark_add_outlined,
+                          size: 30,color: AppColor.yellowColor,),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, MovieDetails.routeName,
+                          arguments:
+                          MovieDetailsArg(
+                            title:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].title,
+                            backdropPath:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].backdropPath,
+                            originalLanguage:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].originalLanguage,
+                            originalTitle:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].originalTitle,
+                            overview:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].overview,
+                            posterPath:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].posterPath,
+                            releaseDate: watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].releaseDate,
+                            voteAverage:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].voteAverage,
+                            voteCount:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].voteCount,
+                          ));
+                    },
+                    child: Text(
+                      watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].title.toString(),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ]);
+        },
+      );
   }
 }
