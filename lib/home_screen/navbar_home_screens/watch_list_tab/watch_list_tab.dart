@@ -40,11 +40,7 @@ watchListViewModel.watchListRepo.getDataFromFireStore();
               IconButton(onPressed: () {}, icon: const Icon(Icons.abc))
             ],
           ),
-          body: Column(
-            // children: [Text(watchListViewModel.watchListRepo.movieFromFireStoreDocList[0]),
-            //   checkCategoryList(),
-            // ],
-          ),
+          body: checkCategoryList(),
         );
       },
     );
@@ -81,29 +77,17 @@ watchListViewModel.watchListRepo.getDataFromFireStore();
               children: [
                 Expanded(
                   flex: 11,
-                  child: Stack(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.1),
-                        child: Image(
-                            height: height * 0.3,
-                            width: width * 0.40,
-                            image: NetworkImage(
-                                ApiMovieManager.apiMovieTMDBImageUrl +
-                                    watchListViewModel.watchListRepo.movieFromFireStoreDocList[index]
-                                        .posterPath),),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.1),
+                    child: Image(
+                        height: height * 0.3,
+                        width: width * 0.40,
+                        image: NetworkImage(
+                            ApiMovieManager.apiMovieTMDBImageUrl +
+                                watchListViewModel.watchListRepo.movieResultFromFireStore
+                                    .posterPath.toString()),),
 
-                      ),
-                      Padding(
-                        padding:
-                        EdgeInsets.only(top: height * .01, left: width * .04),
-                        child: IconButton(icon: Icon(Icons.bookmark_add_outlined,
-                          size: 30,color: AppColor.yellowColor,),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ],
                   ),
                 ),
                 Expanded(
@@ -112,19 +96,21 @@ watchListViewModel.watchListRepo.getDataFromFireStore();
                       Navigator.pushNamed(context, MovieDetails.routeName,
                           arguments:
                           MovieDetailsArg(
-                            title:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].title,
-                            backdropPath:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].backdropPath,
-                            originalLanguage:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].originalLanguage,
-                            originalTitle:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].originalTitle,
-                            overview:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].overview,
-                            posterPath:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].posterPath,
-                            releaseDate: watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].releaseDate,
-                            voteAverage:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].voteAverage,
-                            voteCount:  watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].voteCount,
+                            title:  watchListViewModel.watchListRepo.movieResultFromFireStore.title,
+                            backdropPath:  watchListViewModel.watchListRepo.movieResultFromFireStore.backdropPath,
+                            originalLanguage:  watchListViewModel.watchListRepo.movieResultFromFireStore.originalLanguage,
+                            originalTitle:  watchListViewModel.watchListRepo.movieResultFromFireStore.originalTitle,
+                            overview:  watchListViewModel.watchListRepo.movieResultFromFireStore.overview,
+                            posterPath:  watchListViewModel.watchListRepo.movieResultFromFireStore.posterPath,
+                            releaseDate: watchListViewModel.watchListRepo.movieResultFromFireStore.releaseDate,
+                            voteAverage:  watchListViewModel.watchListRepo.movieResultFromFireStore.voteAverage,
+                            voteCount:  watchListViewModel.watchListRepo.movieResultFromFireStore.voteCount,
                           ));
                     },
                     child: Text(
-                      watchListViewModel.watchListRepo.movieFromFireStoreDocList[index].title.toString(),
+                      watchListViewModel.watchListRepo.movieResultFromFireStore
+
+                          .title.toString(),
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
