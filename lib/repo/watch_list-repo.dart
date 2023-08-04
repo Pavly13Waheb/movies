@@ -1,19 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:movies/API/model_movies_api/api_top_rated_data_model.dart';
+import 'package:movies/API/model_movies_api/api_category_movie_list.dart';
 
-import '../API/model_movies_api/api_category_movie_list.dart';
+import '../home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list_view_model.dart';
 
 class WatchListRepo extends ChangeNotifier {
-  List watchList = [];
+  CategoryMoviesListViewModel listViewModel = CategoryMoviesListViewModel();
+
+  List movieFromFireStoreDocList = [];
 
 
   getDataFromFireStore() async {
     CollectionReference movieFromFireStore =
         FirebaseFirestore.instance.collection("Watch List");
-    DocumentSnapshot snapshot = await movieFromFireStore.doc("Interstellar").get();
-    CategoryResultsDM movieData = CategoryResultsDM.fromJson(snapshot.data());
-     //watchList = movieData as List;
-    print("====================${movieData.title}=============");
+    // QuerySnapshot querySnapshot = await movieFromFireStore.get();
+    // final movieData = querySnapshot.docs.map((doc) => doc.data()).toList();
+
+    // DocumentSnapshot snapshot = await movieFromFireStore.doc().get();
+    // CategoryResultsDM obj = CategoryResultsDM.fromJson(snapshot.data());
+
+    print("====================${obj.title}=============");
   }
 }
