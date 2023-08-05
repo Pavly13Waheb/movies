@@ -13,20 +13,17 @@ class WatchListTab extends StatefulWidget {
 }
 
 class _WatchListTabState extends State<WatchListTab> {
-
   WatchListViewModel watchListViewModel = WatchListViewModel();
-
 
   @override
   void initState() {
     // TODO: implement initState
-watchListViewModel.watchListRepo.getDataFromFireStore();
+    watchListViewModel.watchListRepo.getDataFromFireStore();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) {
         return watchListViewModel.watchListRepo;
@@ -35,7 +32,9 @@ watchListViewModel.watchListRepo.getDataFromFireStore();
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title:  Text("Watch List" , style: TextStyle(fontSize: 30,color: AppColor.darkYellowColor) ),
+            title: Text("Watch List",
+                style:
+                    TextStyle(fontSize: 30, color: AppColor.darkYellowColor)),
             actions: [
               IconButton(onPressed: () {}, icon: const Icon(Icons.abc))
             ],
@@ -49,7 +48,8 @@ watchListViewModel.watchListRepo.getDataFromFireStore();
   Widget checkCategoryList() {
     if (watchListViewModel.watchListRepo.movieFromFireStoreDocList.isNotEmpty) {
       return moviesListFromFireStore();
-    } else if (watchListViewModel.watchListRepo.movieFromFireStoreDocList.isEmpty) {
+    } else if (watchListViewModel
+        .watchListRepo.movieFromFireStoreDocList.isEmpty) {
       return Center(
           child: InkWell(
               onTap: () {
@@ -60,57 +60,71 @@ watchListViewModel.watchListRepo.getDataFromFireStore();
       return checkCategoryList();
     }
   }
+
   Widget moviesListFromFireStore() {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return
-      GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: width * 0.08,
-            mainAxisSpacing: height * 0.02),
-        itemCount: watchListViewModel.watchListRepo.movieFromFireStoreDocList.length,
-        itemBuilder: (context, index) {
-          return Stack(children: [
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: width * 0.08,
+          mainAxisSpacing: height * 0.02),
+      itemCount:
+          watchListViewModel.watchListRepo.movieFromFireStoreDocList.length,
+      itemBuilder: (context, index) {
+        return Stack(
+          children: [
             Column(
               children: [
                 Expanded(
                   flex: 11,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.1),
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.1),
                     child: Image(
-                        height: height * 0.3,
-                        width: width * 0.40,
-                        image: NetworkImage(
-                            ApiMovieManager.apiMovieTMDBImageUrl +
-                                watchListViewModel.watchListRepo.movieResultFromFireStore
-                                    .posterPath.toString()),),
-
+                      height: height * 0.3,
+                      width: width * 0.40,
+                      image: NetworkImage(
+                        ApiMovieManager.apiMovieTMDBImageUrl +
+                            watchListViewModel.watchListRepo
+                                .movieResultFromFireStore.posterPath
+                                .toString(),
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, MovieDetails.routeName,
-                          arguments:
-                          MovieDetailsArg(
-                            title:  watchListViewModel.watchListRepo.movieResultFromFireStore.title,
-                            backdropPath:  watchListViewModel.watchListRepo.movieResultFromFireStore.backdropPath,
-                            originalLanguage:  watchListViewModel.watchListRepo.movieResultFromFireStore.originalLanguage,
-                            originalTitle:  watchListViewModel.watchListRepo.movieResultFromFireStore.originalTitle,
-                            overview:  watchListViewModel.watchListRepo.movieResultFromFireStore.overview,
-                            posterPath:  watchListViewModel.watchListRepo.movieResultFromFireStore.posterPath,
-                            releaseDate: watchListViewModel.watchListRepo.movieResultFromFireStore.releaseDate,
-                            voteAverage:  watchListViewModel.watchListRepo.movieResultFromFireStore.voteAverage,
-                            voteCount:  watchListViewModel.watchListRepo.movieResultFromFireStore.voteCount,
-                          ));
+                      Navigator.pushNamed(
+                        context,
+                        MovieDetails.routeName,
+                        arguments: MovieDetailsArg(
+                          title: watchListViewModel
+                              .watchListRepo.movieResultFromFireStore.title,
+                          backdropPath: watchListViewModel.watchListRepo
+                              .movieResultFromFireStore.backdropPath,
+                          originalLanguage: watchListViewModel.watchListRepo
+                              .movieResultFromFireStore.originalLanguage,
+                          originalTitle: watchListViewModel.watchListRepo
+                              .movieResultFromFireStore.originalTitle,
+                          overview: watchListViewModel
+                              .watchListRepo.movieResultFromFireStore.overview,
+                          posterPath: watchListViewModel.watchListRepo
+                              .movieResultFromFireStore.posterPath,
+                          releaseDate: watchListViewModel.watchListRepo
+                              .movieResultFromFireStore.releaseDate,
+                          voteAverage: watchListViewModel.watchListRepo
+                              .movieResultFromFireStore.voteAverage,
+                          voteCount: watchListViewModel
+                              .watchListRepo.movieResultFromFireStore.voteCount,
+                        ),
+                      );
                     },
                     child: Text(
-                      watchListViewModel.watchListRepo.movieResultFromFireStore
-
-                          .title.toString(),
+                      watchListViewModel
+                          .watchListRepo.movieResultFromFireStore.title
+                          .toString(),
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
@@ -118,8 +132,9 @@ watchListViewModel.watchListRepo.getDataFromFireStore();
                 ),
               ],
             ),
-          ]);
-        },
-      );
+          ],
+        );
+      },
+    );
   }
 }
