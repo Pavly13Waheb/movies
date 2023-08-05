@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/API/api_manager_statics_data.dart';
 import 'package:movies/home_screen/navbar_home_screens/watch_list_tab/watch_list_view_model.dart';
 import 'package:provider/provider.dart';
+
 import '../../../theme/app_material.dart';
 import '../../model/movie_details/movie_details.dart';
 import '../../model/movie_details/movie_details_arg.dart';
@@ -25,9 +26,7 @@ class _WatchListTabState extends State<WatchListTab> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) {
-        return watchListViewModel.watchListRepo;
-      },
+      create: (context) => watchListViewModel.watchListRepo,
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
@@ -39,26 +38,12 @@ class _WatchListTabState extends State<WatchListTab> {
               IconButton(onPressed: () {}, icon: const Icon(Icons.abc))
             ],
           ),
-          body: checkCategoryList(),
+          body: watchListViewModel.checkWatchList(
+              moviesListFromFireStore: moviesListFromFireStore,
+              setState: setState),
         );
       },
     );
-  }
-
-  Widget checkCategoryList() {
-    if (watchListViewModel.watchListRepo.movieFromFireStoreDocList.isNotEmpty) {
-      return moviesListFromFireStore();
-    } else if (watchListViewModel
-        .watchListRepo.movieFromFireStoreDocList.isEmpty) {
-      return Center(
-          child: InkWell(
-              onTap: () {
-                setState(() {});
-              },
-              child: const CircularProgressIndicator()));
-    } else {
-      return checkCategoryList();
-    }
   }
 
   Widget moviesListFromFireStore() {
@@ -70,8 +55,8 @@ class _WatchListTabState extends State<WatchListTab> {
           crossAxisCount: 2,
           crossAxisSpacing: width * 0.08,
           mainAxisSpacing: height * 0.02),
-      itemCount:
-          watchListViewModel.watchListRepo.movieFromFireStoreDocList.length,
+      itemCount: watchListViewModel
+          .watchListRepo.movieResultFromFireStoreDocList.length,
       itemBuilder: (context, index) {
         return Stack(
           children: [
@@ -86,8 +71,10 @@ class _WatchListTabState extends State<WatchListTab> {
                       width: width * 0.40,
                       image: NetworkImage(
                         ApiMovieManager.apiMovieTMDBImageUrl +
-                            watchListViewModel.watchListRepo
-                                .movieResultFromFireStore.posterPath
+                            watchListViewModel
+                                .watchListRepo
+                                .movieResultFromFireStoreDocList[index]
+                                .posterPath
                                 .toString(),
                       ),
                     ),
@@ -100,30 +87,42 @@ class _WatchListTabState extends State<WatchListTab> {
                         context,
                         MovieDetails.routeName,
                         arguments: MovieDetailsArg(
-                          title: watchListViewModel
-                              .watchListRepo.movieResultFromFireStore.title,
-                          backdropPath: watchListViewModel.watchListRepo
-                              .movieResultFromFireStore.backdropPath,
-                          originalLanguage: watchListViewModel.watchListRepo
-                              .movieResultFromFireStore.originalLanguage,
-                          originalTitle: watchListViewModel.watchListRepo
-                              .movieResultFromFireStore.originalTitle,
-                          overview: watchListViewModel
-                              .watchListRepo.movieResultFromFireStore.overview,
-                          posterPath: watchListViewModel.watchListRepo
-                              .movieResultFromFireStore.posterPath,
-                          releaseDate: watchListViewModel.watchListRepo
-                              .movieResultFromFireStore.releaseDate,
-                          voteAverage: watchListViewModel.watchListRepo
-                              .movieResultFromFireStore.voteAverage,
-                          voteCount: watchListViewModel
-                              .watchListRepo.movieResultFromFireStore.voteCount,
+                          title: watchListViewModel.watchListRepo
+                              .movieResultFromFireStoreDocList[index].title,
+                          backdropPath: watchListViewModel
+                              .watchListRepo
+                              .movieResultFromFireStoreDocList[index]
+                              .backdropPath,
+                          originalLanguage: watchListViewModel
+                              .watchListRepo
+                              .movieResultFromFireStoreDocList[index]
+                              .originalLanguage,
+                          originalTitle: watchListViewModel
+                              .watchListRepo
+                              .movieResultFromFireStoreDocList[index]
+                              .originalTitle,
+                          overview: watchListViewModel.watchListRepo
+                              .movieResultFromFireStoreDocList[index].overview,
+                          posterPath: watchListViewModel
+                              .watchListRepo
+                              .movieResultFromFireStoreDocList[index]
+                              .posterPath,
+                          releaseDate: watchListViewModel
+                              .watchListRepo
+                              .movieResultFromFireStoreDocList[index]
+                              .releaseDate,
+                          voteAverage: watchListViewModel
+                              .watchListRepo
+                              .movieResultFromFireStoreDocList[index]
+                              .voteAverage,
+                          voteCount: watchListViewModel.watchListRepo
+                              .movieResultFromFireStoreDocList[index].voteCount,
                         ),
                       );
                     },
                     child: Text(
-                      watchListViewModel
-                          .watchListRepo.movieResultFromFireStore.title
+                      watchListViewModel.watchListRepo
+                          .movieResultFromFireStoreDocList[index].title
                           .toString(),
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall,

@@ -10,18 +10,13 @@ class MovieDetailsArg {
   num? voteCount;
 
   MovieDetailsArg(
-      {required this.posterPath,
-      required this.title,
-      required this.backdropPath,
-      required this.overview,
-      required this.voteCount,
-      required this.releaseDate,
-      required this.originalTitle,
-      required this.originalLanguage,
-      required this.voteAverage});
-
-
-
-
-
+      {this.posterPath,
+      this.title,
+      this.backdropPath,
+      this.overview,
+      this.voteCount,
+      this.releaseDate,
+      this.originalTitle,
+      this.originalLanguage,
+      this.voteAverage});
 }

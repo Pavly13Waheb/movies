@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/API/model_movies_api/api_top_rated_data_model.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list_args.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list_view_model.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../API/api_manager_statics_data.dart';
-import '../../../../API/model_movies_api/api_category_movie_list.dart';
 import '../../../../theme/app_material.dart';
 import '../../../model/movie_details/movie_details.dart';
 import '../../../model/movie_details/movie_details_arg.dart';

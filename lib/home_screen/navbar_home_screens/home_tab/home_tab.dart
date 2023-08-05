@@ -6,6 +6,7 @@ import 'package:movies/repo/movie_popular_repo.dart';
 import 'package:movies/repo/top_rated_movies_repo.dart';
 import 'package:movies/theme/app_material.dart';
 import 'package:provider/provider.dart';
+
 import '../../model/movie_details/movie_details_arg.dart';
 
 class HomeTab extends StatefulWidget {
@@ -104,7 +105,6 @@ class _HomeTabState extends State<HomeTab> {
                     CircularProgressIndicator(value: downloadProgress.progress),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-
               Container(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                 child: Row(
@@ -126,16 +126,16 @@ class _HomeTabState extends State<HomeTab> {
                           InkWell(
                             onTap: () {
                               Navigator.pushNamed(
-                                  context, PopularMovieDetails.routeName,
-                                  arguments: MovieDetailsArg(
-                                    title:
-                                        moviesPopularRepo.results[index].title,
-                                    backdropPath: moviesPopularRepo
-                                        .results[index].backdropPath,
-                                    originalLanguage: moviesPopularRepo
-                                        .results[index].originalLanguage,
-                                    originalTitle: moviesPopularRepo
-                                        .results[index].originalTitle,
+                                context,
+                                PopularMovieDetails.routeName,
+                                arguments: MovieDetailsArg(
+                                  title: moviesPopularRepo.results[index].title,
+                                  backdropPath: moviesPopularRepo
+                                      .results[index].backdropPath,
+                                  originalLanguage: moviesPopularRepo
+                                      .results[index].originalLanguage,
+                                  originalTitle: moviesPopularRepo
+                                      .results[index].originalTitle,
                                   overview:
                                       moviesPopularRepo.results[index].overview,
                                   posterPath: moviesPopularRepo
