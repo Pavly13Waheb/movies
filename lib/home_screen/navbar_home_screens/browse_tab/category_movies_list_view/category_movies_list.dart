@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/home_screen/login/login_view.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list_args.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list_view_model.dart';
 import 'package:provider/provider.dart';
@@ -104,7 +105,7 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                         ,
                          onPressed: () {
 
-                        CollectionReference movie = FirebaseFirestore.instance.collection("Watch List");
+                        CollectionReference movie = FirebaseFirestore.instance.collection(LoginView.userName!);
                         movie.doc(listViewModel
                             .categoryListRepo.results[index].title).set(listViewModel
                             .categoryListRepo.results[index].toJson());

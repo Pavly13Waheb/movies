@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:movies/home_screen/login/login_view.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -73,8 +74,9 @@ class _MyAppState extends State<MyApp> {
             PopularMovieDetails.routeName: (_) => PopularMovieDetails(),
             CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
             MovieDetails.routeName: (_) => MovieDetails(),
+            LoginView.routeName: (_) => LoginView(),
           },
-          initialRoute: HomePage.routeName,
+          initialRoute: LoginView.routeName,
         );
       },
     );
