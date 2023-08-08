@@ -8,6 +8,18 @@ import '../API/model_movies_api/api_category_movie.dart';
 class MovieCategoryRepo extends ChangeNotifier {
   List<Genres> genres = [];
 
+  void checkInternetForCategory(
+      ApiCategoriesMovieDM apiCategoriesMovieDM) async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result == true) {
+      getGenres();
+      whenInternet(apiCategoriesMovieDM);
+    } else {
+      withoutInternet();
+    }
+    notifyListeners();
+  }
+
   void getGenres() async {
     ApiCategoriesMovieDM apiCategoriesMovieDM =
         await ApiMovieManager.getCategory();
@@ -15,36 +27,19 @@ class MovieCategoryRepo extends ChangeNotifier {
     notifyListeners();
   }
 
-
-  void checkInternetForCategory(ApiCategoriesMovieDM apiCategoriesMovieDM)async{
-    bool result = await InternetConnectionChecker().hasConnection;
-    if(result == true) {
-      whenInternet(apiCategoriesMovieDM);
-
-    } else {
-      withoutInternet();
-      print('No internet :( Reason:');
-    }
-  }
-
-  whenInternet(ApiCategoriesMovieDM apiCategoriesMovieDM)async{
-
+  whenInternet(ApiCategoriesMovieDM apiCategoriesMovieDM) async {
     CollectionReference addGenresList =
-    FirebaseFirestore.instance.collection("ApiCategoriesMovieDM");
-    await addGenresList
-        .doc("Genres")
-        .set(apiCategoriesMovieDM.toJson());
-    print("+++++++++++++++++++${addGenresList}++++++++++++++++++++");
+        FirebaseFirestore.instance.collection("ApiCategoriesMovieDM");
+    await addGenresList.doc("Genres").set(apiCategoriesMovieDM.toJson());
+    notifyListeners();
   }
 
-  withoutInternet()async{
+  withoutInternet() async {
     CollectionReference collectionReference =
-    FirebaseFirestore.instance.collection("ApiCategoriesMovieDM");
+        FirebaseFirestore.instance.collection("ApiCategoriesMovieDM");
     DocumentSnapshot snapshot = await collectionReference.doc("Genres").get();
     ApiCategoriesMovieDM obj = ApiCategoriesMovieDM.fromJson(snapshot.data());
-    print("================= ${obj.genres}==========");
+    genres = obj.genres!;
+    notifyListeners();
   }
 }
-
-
-

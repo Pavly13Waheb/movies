@@ -7,7 +7,6 @@ import '../../../theme/app_material.dart';
 import '../../model/movie_details/movie_details.dart';
 import '../../model/movie_details/movie_details_arg.dart';
 
-// ignore: use_key_in_widget_constructors
 class WatchListTab extends StatefulWidget {
   @override
   State<WatchListTab> createState() => _WatchListTabState();
@@ -20,6 +19,7 @@ class _WatchListTabState extends State<WatchListTab> {
   void initState() {
     // TODO: implement initState
     watchListViewModel.watchListRepo.getDataFromFireStore();
+
     super.initState();
   }
 

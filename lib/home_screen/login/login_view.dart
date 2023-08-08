@@ -32,16 +32,16 @@ class LoginView extends StatelessWidget {
           children: [
             TextFormField(
               textAlign: TextAlign.center,
-              decoration: const InputDecoration(
-                enabledBorder: OutlineInputBorder(
+              decoration: InputDecoration(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red, width: 2),
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
                 ),
                 hintText: "User Name",
-                prefixIcon: Icon(Icons.person),
-                border: OutlineInputBorder(
+                prefixIcon: const Icon(Icons.person),
+                border: const OutlineInputBorder(
                   borderSide: BorderSide(width: 2, color: Colors.blue),
                 ),
               ),

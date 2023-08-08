@@ -1,16 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:movies/home_screen/login/login_view.dart';
-import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:movies/home_screen/login/login_view.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list.dart';
 import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'firebase_options.dart';
 import 'home_screen/home_page.dart';
 import 'home_screen/model/movie_details/movie_details.dart';
 import 'home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
   await Hive.openBox('settings');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseFirestore.instance.disableNetwork();
 
   runApp(
     ChangeNotifierProvider(
