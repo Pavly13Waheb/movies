@@ -33,16 +33,23 @@ class LoginView extends StatelessWidget {
             TextFormField(
               textAlign: TextAlign.center,
               decoration: InputDecoration(
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 2),
+                filled: true,
+                fillColor: AppColor.whiteColor,
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Colors.red, width: width * .007),
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
                 ),
                 hintText: "User Name",
-                prefixIcon: const Icon(Icons.person),
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(width: 2, color: Colors.blue),
+                prefixIcon: Icon(Icons.person),
+                border: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(width: width * .007, color: Colors.blue),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
+                  ),
                 ),
               ),
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -71,7 +78,7 @@ class LoginView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Login", style: Theme.of(context).textTheme.bodyMedium),
+                  Text("Login", style: Theme.of(context).textTheme.bodyLarge),
                 ],
               ),
             ),
