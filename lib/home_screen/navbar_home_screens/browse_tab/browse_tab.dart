@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:movies/API/model_movies_api/api_category_movie.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list_args.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list.dart';
 import 'package:movies/theme/app_material.dart';
@@ -17,6 +18,9 @@ class _BrowseTabState extends State<BrowseTab> {
   @override
   void initState() {
     browseTab.getGenres();
+    //browseTab.checkInternetForCategory(ApiCategoriesMovieDM());
+    browseTab.whenInternet(ApiCategoriesMovieDM());
+   // browseTab.withoutInternet();
     // TODO: implement initState
     super.initState();
   }
