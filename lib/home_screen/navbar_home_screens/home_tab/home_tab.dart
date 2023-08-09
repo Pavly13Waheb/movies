@@ -204,6 +204,8 @@ class _HomeTabState extends State<HomeTab> {
             SizedBox(
               height: height,
               child: ListView.builder(
+                itemCount: moviesTopRatedRepo
+                    .results.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Container(
