@@ -1,7 +1,9 @@
 import 'dart:convert';
+
 import 'package:http/http.dart';
 import 'package:movies/API/model_movies_api/api_category_movie.dart';
 import 'package:movies/API/model_movies_api/api_category_movie_list.dart';
+
 import 'model_movies_api/api_popular_class_data_model.dart';
 import 'model_movies_api/api_top_rated_data_model.dart';
 import 'model_movies_api/search_data_model.dart';

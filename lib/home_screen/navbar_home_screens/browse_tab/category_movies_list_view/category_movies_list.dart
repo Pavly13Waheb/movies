@@ -28,8 +28,6 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     var arg =
@@ -72,90 +70,93 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return
-      GridView.builder(
+    return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: width * 0.08,
           mainAxisSpacing: height * 0.02),
       itemCount: listViewModel.categoryListRepo.results.length,
       itemBuilder: (context, index) {
-        return Stack(children: [
-          Column(
-            children: [
-              Expanded(
-                flex: 11,
-                child: Stack(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                         horizontal: width * 0.1),
-                      child: Image(
-                          height: height * 0.3,
-                          width: width * 0.40,
-                          image: NetworkImage(
-                              ApiMovieManager.apiMovieTMDBImageUrl +
-                                  listViewModel.categoryListRepo.results[index]
-                                      .posterPath!)),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: height * .01, left: width * .04),
-                      child: IconButton(icon: Icon(Icons.bookmark_add_outlined,
-                        size: 30,color: AppColor.yellowColor,)
-                        ,
-                         onPressed: () {
-                           CollectionReference movie = FirebaseFirestore
-                               .instance.collection(loginView.userNameLogin!);
-                           movie.doc(listViewModel
-                               .categoryListRepo.results[index].title).set(
-                               listViewModel
-                                   .categoryListRepo.results[index].toJson());
-                       },
+        return Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  flex: 11,
+                  child: Stack(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.1),
+                        child: Image(
+                            height: height * 0.3,
+                            width: width * 0.40,
+                            image: NetworkImage(
+                                ApiMovieManager.apiMovieTMDBImageUrl +
+                                    listViewModel.categoryListRepo
+                                        .results[index].posterPath!)),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, MovieDetails.routeName,
-                        arguments:
-                        MovieDetailsArg(
-                          title: listViewModel
-                              .categoryListRepo.results[index].title,
-                          backdropPath: listViewModel
-                              .categoryListRepo.results[index].backdropPath,
-                          originalLanguage: listViewModel
-                              .categoryListRepo.results[index].originalLanguage,
-                          originalTitle: listViewModel
-                              .categoryListRepo.results[index].originalTitle,
-                          overview: listViewModel
-                              .categoryListRepo.results[index].overview,
-                          posterPath: listViewModel
-                              .categoryListRepo.results[index].posterPath,
-                          releaseDate: listViewModel
-                              .categoryListRepo.results[index].releaseDate,
-                          voteAverage: listViewModel
-                              .categoryListRepo.results[index].voteAverage,
-                          voteCount: listViewModel
-                              .categoryListRepo.results[index].voteCount,
-                        ));
-                  },
-                  child: Text(
-                    listViewModel.categoryListRepo.results[index].title!,
-                    textAlign: TextAlign.center,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .labelSmall,
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: height * .01, left: width * .04),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.bookmark_add_outlined,
+                            size: 30,
+                            color: AppColor.yellowColor,
+                          ),
+                          onPressed: () {
+                            CollectionReference movie = FirebaseFirestore
+                                .instance
+                                .collection(loginView.userNameLogin!);
+                            movie
+                                .doc(listViewModel
+                                    .categoryListRepo.results[index].title)
+                                .set(listViewModel
+                                    .categoryListRepo.results[index]
+                                    .toJson());
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],);
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, MovieDetails.routeNameMovieDetails,
+                          arguments: MovieDetailsArg(
+                            title: listViewModel
+                                .categoryListRepo.results[index].title,
+                            backdropPath: listViewModel
+                                .categoryListRepo.results[index].backdropPath,
+                            originalLanguage: listViewModel.categoryListRepo
+                                .results[index].originalLanguage,
+                            originalTitle: listViewModel
+                                .categoryListRepo.results[index].originalTitle,
+                            overview: listViewModel
+                                .categoryListRepo.results[index].overview,
+                            posterPath: listViewModel
+                                .categoryListRepo.results[index].posterPath,
+                            releaseDate: listViewModel
+                                .categoryListRepo.results[index].releaseDate,
+                            voteAverage: listViewModel
+                                .categoryListRepo.results[index].voteAverage,
+                            voteCount: listViewModel
+                                .categoryListRepo.results[index].voteCount,
+                          ));
+                    },
+                    child: Text(
+                      listViewModel.categoryListRepo.results[index].title!,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
       },
     );
   }

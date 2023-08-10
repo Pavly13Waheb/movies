@@ -71,12 +71,12 @@ class _MyAppState extends State<MyApp> {
           locale: Locale(provider.currentLocale),
           debugShowCheckedModeBanner: false,
           routes: {
+            MovieDetails.routeNameMovieDetails: (_) => MovieDetails(),
             HomePage.routeName: (_) => HomePage(),
-            MovieDetails.routeName: (_) => MovieDetails(),
             CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
-            LoginView.routeNameLogin: (_) => LoginView()
+            "Login": (_) => LoginView()
           },
-          initialRoute: LoginView.routeNameLogin,
+          initialRoute: "Login",
         );
       },
     );

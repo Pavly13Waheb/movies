@@ -5,7 +5,7 @@ import '../../../../../theme/app_material.dart';
 import 'movie_details_arg.dart';
 
 class MovieDetails extends StatefulWidget {
-  static String routeName = "RouteName";
+  static String routeNameMovieDetails = "RouteName";
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();

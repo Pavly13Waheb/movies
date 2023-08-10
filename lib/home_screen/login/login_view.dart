@@ -3,7 +3,6 @@ import 'package:movies/home_screen/login/login_view_model.dart';
 import 'package:movies/theme/app_material.dart';
 
 class LoginView extends StatefulWidget {
-  static String routeNameLogin = "RouteName";
   String? userNameLogin;
 
   @override
@@ -15,14 +14,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    var height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(

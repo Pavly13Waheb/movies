@@ -85,7 +85,7 @@ class _WatchListTabState extends State<WatchListTab> {
                     onTap: () {
                       Navigator.pushNamed(
                         context,
-                        MovieDetails.routeName,
+                        MovieDetails.routeNameMovieDetails,
                         arguments: MovieDetailsArg(
                           title: watchListViewModel.watchListRepo
                               .movieResultFromFireStoreDocList[index].title,

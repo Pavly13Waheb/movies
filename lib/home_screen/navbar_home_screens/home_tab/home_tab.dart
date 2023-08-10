@@ -127,7 +127,7 @@ class _HomeTabState extends State<HomeTab> {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                MovieDetails.routeName,
+                                MovieDetails.routeNameMovieDetails,
                                 arguments: MovieDetailsArg(
                                   title: moviesPopularRepo.results[index].title,
                                   backdropPath: moviesPopularRepo
@@ -137,7 +137,7 @@ class _HomeTabState extends State<HomeTab> {
                                   originalTitle: moviesPopularRepo
                                       .results[index].originalTitle,
                                   overview:
-                                  moviesPopularRepo.results[index].overview,
+                                      moviesPopularRepo.results[index].overview,
                                   posterPath: moviesPopularRepo
                                       .results[index].posterPath,
                                   releaseDate: moviesPopularRepo
@@ -204,8 +204,7 @@ class _HomeTabState extends State<HomeTab> {
             SizedBox(
               height: height,
               child: ListView.builder(
-                itemCount: moviesTopRatedRepo
-                    .results.length,
+                itemCount: moviesTopRatedRepo.results.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Container(
@@ -232,7 +231,7 @@ class _HomeTabState extends State<HomeTab> {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              MovieDetails.routeName,
+                              MovieDetails.routeNameMovieDetails,
                               arguments: MovieDetailsArg(
                                 title: moviesTopRatedRepo.results[index].title,
                                 backdropPath: moviesTopRatedRepo
@@ -242,7 +241,7 @@ class _HomeTabState extends State<HomeTab> {
                                 originalTitle: moviesTopRatedRepo
                                     .results[index].originalTitle,
                                 overview:
-                                moviesTopRatedRepo.results[index].overview,
+                                    moviesTopRatedRepo.results[index].overview,
                                 posterPath: moviesTopRatedRepo
                                     .results[index].posterPath,
                                 releaseDate: moviesTopRatedRepo

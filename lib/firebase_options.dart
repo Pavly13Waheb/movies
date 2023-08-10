@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     projectId: 'movies-4df11',
     databaseURL: 'https://movies-4df11-default-rtdb.firebaseio.com',
     storageBucket: 'movies-4df11.appspot.com',
-    iosClientId: '47256033009-f3ieqfr6h7kc6l5mu3rrcoda0e38n377.apps.googleusercontent.com',
+    iosClientId:
+        '47256033009-f3ieqfr6h7kc6l5mu3rrcoda0e38n377.apps.googleusercontent.com',
     iosBundleId: 'com.example.movies',
   );
 
@@ -81,7 +82,8 @@ class DefaultFirebaseOptions {
     projectId: 'movies-4df11',
     databaseURL: 'https://movies-4df11-default-rtdb.firebaseio.com',
     storageBucket: 'movies-4df11.appspot.com',
-    iosClientId: '47256033009-3v24e9qocfkpea5np75bteei1prbn555.apps.googleusercontent.com',
+    iosClientId:
+        '47256033009-3v24e9qocfkpea5np75bteei1prbn555.apps.googleusercontent.com',
     iosBundleId: 'com.example.movies.RunnerTests',
   );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movies/theme/app_material.dart';
+
 import 'navbar_home_screens/browse_tab/browse_tab.dart';
 import 'navbar_home_screens/home_tab/home_tab.dart';
 import 'navbar_home_screens/search_tab/search_tab.dart';
@@ -10,18 +11,17 @@ import 'navbar_home_screens/watch_list_tab/watch_list_tab.dart';
 class HomePage extends StatefulWidget {
   static String routeName = "homepage";
 
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   List navbar = [
-     HomeTab(),
-     SearchTab(),
-     BrowseTab(),
-     WatchListTab(),
-     AppSettings()
+    HomeTab(),
+    SearchTab(),
+    BrowseTab(),
+    WatchListTab(),
+    AppSettings()
   ];
   int navBarPage = 0;
 
