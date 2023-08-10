@@ -14,7 +14,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'home_screen/home_page.dart';
 import 'home_screen/model/movie_details/movie_details.dart';
-import 'home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
@@ -73,12 +72,11 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           routes: {
             HomePage.routeName: (_) => HomePage(),
-            PopularMovieDetails.routeName: (_) => PopularMovieDetails(),
-            CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
             MovieDetails.routeName: (_) => MovieDetails(),
-            LoginView.routeName: (_) => LoginView(),
+            CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
+            LoginView.routeNameLogin: (_) => LoginView()
           },
-          initialRoute: LoginView.routeName,
+          initialRoute: LoginView.routeNameLogin,
         );
       },
     );

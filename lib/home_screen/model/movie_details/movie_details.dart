@@ -7,8 +7,6 @@ import 'movie_details_arg.dart';
 class MovieDetails extends StatefulWidget {
   static String routeName = "RouteName";
 
-  const MovieDetails({super.key});
-
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
 }
@@ -27,6 +25,7 @@ class _MovieDetailsState extends State<MovieDetails> {
   Widget movieWidgetDetails(arg) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(arg.title!),

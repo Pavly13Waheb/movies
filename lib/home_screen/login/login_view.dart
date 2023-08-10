@@ -2,15 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:movies/home_screen/login/login_view_model.dart';
 import 'package:movies/theme/app_material.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
+  static String routeNameLogin = "RouteName";
+  String? userNameLogin;
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
   LoginViewModel loginViewModel = LoginViewModel();
-  static String routeName = "RouteName";
-  static String? userName;
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return Scaffold(
       appBar: AppBar(
@@ -54,10 +66,10 @@ class LoginView extends StatelessWidget {
               ),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               onSaved: (newValue) {
-                userName = newValue!;
+                widget.userNameLogin = newValue!;
               },
               onChanged: (value) {
-                userName = value;
+                widget.userNameLogin = value;
               },
               validator: (value) {
                 if (value!.length > 100) {
@@ -73,7 +85,7 @@ class LoginView extends StatelessWidget {
             InkWell(
               onTap: () {
                 loginViewModel.checkUserNameValidate(
-                    userName: userName, context: context);
+                    userName: widget.userNameLogin, context: context);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -18,8 +18,9 @@ class CategoryMoviesList extends StatefulWidget {
 }
 
 class _CategoryMoviesListState extends State<CategoryMoviesList> {
-  //MovieCategoryListRepo categoryListRepo = MovieCategoryListRepo();
   CategoryMoviesListViewModel listViewModel = CategoryMoviesListViewModel();
+  LoginView loginView = LoginView();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -104,11 +105,12 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                         size: 30,color: AppColor.yellowColor,)
                         ,
                          onPressed: () {
-
-                        CollectionReference movie = FirebaseFirestore.instance.collection(LoginView.userName!);
-                        movie.doc(listViewModel
-                            .categoryListRepo.results[index].title).set(listViewModel
-                            .categoryListRepo.results[index].toJson());
+                           CollectionReference movie = FirebaseFirestore
+                               .instance.collection(loginView.userNameLogin!);
+                           movie.doc(listViewModel
+                               .categoryListRepo.results[index].title).set(
+                               listViewModel
+                                   .categoryListRepo.results[index].toJson());
                        },
                       ),
                     ),
@@ -144,13 +146,16 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                   child: Text(
                     listViewModel.categoryListRepo.results[index].title!,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.labelSmall,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .labelSmall,
                   ),
                 ),
               ),
             ],
           ),
-        ]);
+        ],);
       },
     );
   }

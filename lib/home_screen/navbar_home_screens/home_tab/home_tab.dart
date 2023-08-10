@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/API/api_manager_statics_data.dart';
-import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_movie_details.dart';
+import 'package:movies/home_screen/model/movie_details/movie_details.dart';
 import 'package:movies/repo/movie_popular_repo.dart';
 import 'package:movies/repo/top_rated_movies_repo.dart';
 import 'package:movies/theme/app_material.dart';
@@ -127,7 +127,7 @@ class _HomeTabState extends State<HomeTab> {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                PopularMovieDetails.routeName,
+                                MovieDetails.routeName,
                                 arguments: MovieDetailsArg(
                                   title: moviesPopularRepo.results[index].title,
                                   backdropPath: moviesPopularRepo
@@ -137,7 +137,7 @@ class _HomeTabState extends State<HomeTab> {
                                   originalTitle: moviesPopularRepo
                                       .results[index].originalTitle,
                                   overview:
-                                      moviesPopularRepo.results[index].overview,
+                                  moviesPopularRepo.results[index].overview,
                                   posterPath: moviesPopularRepo
                                       .results[index].posterPath,
                                   releaseDate: moviesPopularRepo
@@ -230,7 +230,7 @@ class _HomeTabState extends State<HomeTab> {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              PopularMovieDetails.routeName,
+                              MovieDetails.routeName,
                               arguments: MovieDetailsArg(
                                 title: moviesTopRatedRepo.results[index].title,
                                 backdropPath: moviesTopRatedRepo
@@ -240,7 +240,7 @@ class _HomeTabState extends State<HomeTab> {
                                 originalTitle: moviesTopRatedRepo
                                     .results[index].originalTitle,
                                 overview:
-                                    moviesTopRatedRepo.results[index].overview,
+                                moviesTopRatedRepo.results[index].overview,
                                 posterPath: moviesTopRatedRepo
                                     .results[index].posterPath,
                                 releaseDate: moviesTopRatedRepo
