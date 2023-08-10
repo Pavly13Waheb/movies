@@ -19,7 +19,6 @@ class CategoryMoviesList extends StatefulWidget {
 
 class _CategoryMoviesListState extends State<CategoryMoviesList> {
   CategoryMoviesListViewModel listViewModel = CategoryMoviesListViewModel();
-  LoginView loginView = LoginView();
 
   @override
   void initState() {
@@ -107,7 +106,7 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                           onPressed: () {
                             CollectionReference movie = FirebaseFirestore
                                 .instance
-                                .collection(loginView.userNameLogin!);
+                                .collection(LoginView.userNameLogin!);
                             movie
                                 .doc(listViewModel
                                     .categoryListRepo.results[index].title)

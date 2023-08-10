@@ -6,11 +6,10 @@ import '../API/model_movies_api/api_category_movie_list.dart';
 
 class WatchListRepo extends ChangeNotifier {
   List<CategoryResultsDM> movieResultFromFireStoreDocList = [];
-  LoginView loginView = LoginView();
 
   getDataFromFireStore() async {
     CollectionReference movieFromFireStore =
-        FirebaseFirestore.instance.collection(loginView.userNameLogin!);
+        FirebaseFirestore.instance.collection(LoginView.userNameLogin!);
     QuerySnapshot querySnapshot = await movieFromFireStore.get();
     final movieData = querySnapshot.docs.map((doc) => doc.data()).toList();
     await loopForMovieOObjects(movieData);

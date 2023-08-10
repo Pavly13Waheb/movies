@@ -3,7 +3,7 @@ import 'package:movies/home_screen/login/login_view_model.dart';
 import 'package:movies/theme/app_material.dart';
 
 class LoginView extends StatefulWidget {
-  String? userNameLogin;
+ static String? userNameLogin;
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -59,10 +59,10 @@ class _LoginViewState extends State<LoginView> {
               ),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               onSaved: (newValue) {
-                widget.userNameLogin = newValue!;
+                LoginView.userNameLogin = newValue!;
               },
               onChanged: (value) {
-                widget.userNameLogin = value;
+                LoginView.userNameLogin = value;
               },
               validator: (value) {
                 if (value!.length > 100) {
@@ -78,7 +78,7 @@ class _LoginViewState extends State<LoginView> {
             InkWell(
               onTap: () {
                 loginViewModel.checkUserNameValidate(
-                    userName: widget.userNameLogin, context: context);
+                    userName: LoginView.userNameLogin, context: context);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
