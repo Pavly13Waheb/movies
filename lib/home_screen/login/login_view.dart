@@ -3,7 +3,7 @@ import 'package:movies/home_screen/login/login_view_model.dart';
 import 'package:movies/theme/app_material.dart';
 
 class LoginView extends StatefulWidget {
- static String? userNameLogin;
+  static String? userNameLogin;
 
   @override
   State<LoginView> createState() => _LoginViewState();
