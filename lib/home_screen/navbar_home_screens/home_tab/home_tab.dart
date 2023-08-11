@@ -48,7 +48,7 @@ class _HomeTabState extends State<HomeTab> {
               builder: (context, child) {
                 moviesTopRatedRepo = Provider.of(context);
                 return Container(
-                  padding: EdgeInsets.symmetric(vertical: height * 0.03),
+                  padding: EdgeInsets.symmetric(vertical: height * 0.01),
                   color: AppColor.greyColor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

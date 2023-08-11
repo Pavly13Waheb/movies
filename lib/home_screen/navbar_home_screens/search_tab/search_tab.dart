@@ -3,7 +3,6 @@ import 'package:movies/home_screen/navbar_home_screens/search_tab/search_delegat
 import 'package:movies/theme/app_material.dart';
 
 class SearchTab extends StatefulWidget {
-  const SearchTab({super.key});
 
   @override
   State<SearchTab> createState() => _SearchTabState();

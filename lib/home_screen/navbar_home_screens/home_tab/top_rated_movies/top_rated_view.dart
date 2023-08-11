@@ -35,14 +35,13 @@ class _TopRatedViewState extends State<TopRatedView> {
           child: Column(
             children: [
               SizedBox(
-                height: height,
+                height: height * .4,
                 child: ListView.builder(
                   itemCount: moviesTopRatedRepo.results.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Container(
                       width: width * 0.4,
-                      padding: EdgeInsets.symmetric(vertical: height * 0.01),
                       child: Column(
                         children: [
                           Container(
