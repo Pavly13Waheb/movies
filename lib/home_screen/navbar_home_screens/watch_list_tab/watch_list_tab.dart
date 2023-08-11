@@ -28,6 +28,7 @@ class _WatchListTabState extends State<WatchListTab> {
     return ChangeNotifierProvider(
       create: (context) => watchListViewModel.watchListRepo,
       builder: (context, child) {
+        watchListViewModel.watchListRepo = Provider.of(context);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
