@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppProvider extends ChangeNotifier {
   String currentLocale = "en";
   ThemeMode? currentTheme;
-  String? currentUser;
+  static String? currentUser;
   static String? userNameLogin;
 
   void changeLanguage(String lang) async {

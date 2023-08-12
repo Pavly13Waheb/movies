@@ -76,7 +76,8 @@ class _MyAppState extends State<MyApp> {
             CategoryMoviesList.routeName: (_) => CategoryMoviesList(),
             "Login": (_) => LoginView()
           },
-          initialRoute: "Login",
+          initialRoute:
+              AppProvider.currentUser == null ? "Login" : HomePage.routeName,
         );
       },
     );

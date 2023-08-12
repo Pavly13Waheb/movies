@@ -5,6 +5,7 @@ import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_material.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 
+// ignore: use_key_in_widget_constructors
 class LoginView extends StatefulWidget {
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -46,16 +47,16 @@ class _LoginViewState extends State<LoginView> {
                 enabledBorder: OutlineInputBorder(
                   borderSide:
                       BorderSide(color: Colors.red, width: width * .007),
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(50),
                   ),
                 ),
                 hintText: AppLocalizations.of(context)!.userName,
-                prefixIcon: Icon(Icons.person),
+                prefixIcon: const Icon(Icons.person),
                 border: OutlineInputBorder(
                   borderSide:
                       BorderSide(width: width * .007, color: Colors.blue),
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(50),
                   ),
                 ),
@@ -114,13 +115,14 @@ class _LoginViewState extends State<LoginView> {
                           AppProvider.userNameLogin == "" ||
                           AppProvider.userNameLogin!.length < 5) {
                         selected = false;
+
                         print("is empty");
                       } else {
                         selected = true;
-
+                        AppProvider.currentUser = AppProvider.userNameLogin;
                         AppProvider().keepMeLogin(AppProvider.userNameLogin!);
                         print(
-                            "change $isChecked , ${AppProvider.userNameLogin} =====");
+                            "change $isChecked , ${AppProvider.userNameLogin} , ${AppProvider.currentUser} =====");
                       }
                     } else {
                       AppProvider.userNameLogin = "";
