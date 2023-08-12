@@ -4,7 +4,7 @@ import '../home_page.dart';
 
 class LoginViewModel {
   checkUserNameValidate({String? userName, context}) {
-    if (userName == null) {
+    if (userName == null || userName == "") {
       return checkUserNameValidate();
     } else {
       Navigator.pushReplacement(

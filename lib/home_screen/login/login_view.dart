@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movies/home_screen/login/login_view_model.dart';
+import 'package:movies/provider/provider.dart';
 import 'package:movies/theme/app_material.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
 class LoginView extends StatefulWidget {
-  static String? userNameLogin;
-
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -15,6 +15,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    bool isChecked = false;
+
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
@@ -43,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                 fillColor: AppColor.whiteColor,
                 enabledBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: Colors.red, width: width * .007),
+                  BorderSide(color: Colors.red, width: width * .007),
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -52,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
                 prefixIcon: Icon(Icons.person),
                 border: OutlineInputBorder(
                   borderSide:
-                      BorderSide(width: width * .007, color: Colors.blue),
+                  BorderSide(width: width * .007, color: Colors.blue),
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -60,10 +62,11 @@ class _LoginViewState extends State<LoginView> {
               ),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               onSaved: (newValue) {
-                LoginView.userNameLogin = newValue!.trim();
+                AppProvider.userNameLogin =
+                    newValue!.trim().split("\n").toString();
               },
               onChanged: (value) {
-                LoginView.userNameLogin = value.trim();
+                AppProvider.userNameLogin = value.trim();
               },
               validator: (value) {
                 if (value!.length > 100) {
@@ -81,7 +84,10 @@ class _LoginViewState extends State<LoginView> {
             InkWell(
               onTap: () {
                 loginViewModel.checkUserNameValidate(
-                    userName: LoginView.userNameLogin!.trim(),
+                    userName: AppProvider.userNameLogin!
+                        .trim()
+                        .split("\n")
+                        .toString(),
                     context: context);
               },
               child: Row(
@@ -92,6 +98,45 @@ class _LoginViewState extends State<LoginView> {
                 ],
               ),
             ),
+            SizedBox(height: height * .03),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RoundCheckBox(
+                  size: 30,
+                  checkedColor: AppColor.yellowColor,
+                  uncheckedColor: AppColor.whiteColor,
+                  isChecked: false,
+                  onTap: (selected) {
+                    isChecked = selected!;
+                    if (selected == true) {
+                      if (AppProvider.userNameLogin == null ||
+                          AppProvider.userNameLogin == "" ||
+                          AppProvider.userNameLogin!.length < 5) {
+                        selected = false;
+                        print("is empty");
+                      } else {
+                        selected = true;
+
+                        AppProvider().keepMeLogin(AppProvider.userNameLogin!);
+                        print(
+                            "change $isChecked , ${AppProvider.userNameLogin} =====");
+                      }
+                    } else {
+                      AppProvider.userNameLogin = "";
+                      print("================NULL======================");
+                    }
+                  },
+                ),
+                const SizedBox(
+                  width: Checkbox.width * .7,
+                ),
+                Text(
+                  "Keep Me Login",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )
+              ],
+            )
           ],
         ),
       ),

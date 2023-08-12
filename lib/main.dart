@@ -86,8 +86,11 @@ class _MyAppState extends State<MyApp> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String lang = prefs.getString("lang") ?? "en";
     String theme = prefs.getString("theme") ?? "dark";
+    String? loginUser = prefs.getString("user");
 
     provider.changeLanguage(lang);
     provider.changeTheme(theme == "dark" ? ThemeMode.dark : ThemeMode.light);
+    provider.keepMeLogin(loginUser!);
   }
 }
+
