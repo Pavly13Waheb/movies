@@ -1,13 +1,18 @@
 {
   "language": "اللغة",
-  "mod" : "النمط",
-  "light" : "مضئ",
-  "dark" : "مظلم",
-  "setting" : "الإعدادات",
-  "movies" : "Movies",
-  "home" : "رئيسي",
-  "search" : "بحث",
-  "browse" : "تصفح",
-  "watchlist" : "قائمة المشاهدة",
-  "noMoviesFound" : "لم يتم العثور على أفلام"
+  "mod": "النمط",
+  "light": "مضئ",
+  "dark": "مظلم",
+  "setting": "الإعدادات",
+  "movies": "Movies",
+  "home": "رئيسي",
+  "search": "بحث",
+  "browse": "تصفح",
+  "watchlist": "قائمة المشاهدة",
+  "noMoviesFound": "لم يتم العثور على أفلام",
+  "topRated": "الأكثر تقييماَ",
+  "login": "تسجيل الدخول",
+  "userName": "إسم المستخدم",
+  "usernameCanotBeMoreThanLetters": "إسم المستخدم لا يمكن ان يزيد عن 100 حرف",
+  "usernameCanotBeLessThanLetters": "إسم المستخدم لا يمكن ان يقل عن 5 أحرف"
 }

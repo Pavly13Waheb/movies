@@ -35,7 +35,7 @@ class _TopRatedViewState extends State<TopRatedView> {
           child: Column(
             children: [
               SizedBox(
-                height: height * .4,
+                height: height * .35,
                 child: ListView.builder(
                   itemCount: moviesTopRatedRepo.results.length,
                   scrollDirection: Axis.horizontal,

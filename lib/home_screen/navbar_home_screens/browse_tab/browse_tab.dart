@@ -71,16 +71,19 @@ class _BrowseTabState extends State<BrowseTab> {
           height: height * 0.3,
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, CategoryMoviesList.routeName,
-                  arguments: CategoryMoviesListArgs(
-                      id: browseTab.genres[index].id!,
-                      name: browseTab.genres[index].name!));
+              Navigator.pushNamed(
+                context,
+                CategoryMoviesList.routeName,
+                arguments: CategoryMoviesListArgs(
+                    id: browseTab.genres[index].id!,
+                    name: browseTab.genres[index].name!),
+              );
             },
             child: Column(
               children: [
                 Image(
                   image: AssetImage(AppImage.logo),
-                  height: height * 0.18,
+                  height: height * 0.13,
                 ),
                 Expanded(
                   child: Text(

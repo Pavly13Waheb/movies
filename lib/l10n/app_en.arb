@@ -1,13 +1,18 @@
 {
   "language": "Language",
-  "mod" : "Mod",
-  "light" : "Light",
-  "dark" : "Dark",
-  "setting" : "Setting",
-  "movies" : "Movies",
-  "home" : "HOME",
-  "search" : "SEARCH",
-  "browse" : "BROWSE",
-  "watchlist" : "WATCH LIST",
-  "noMoviesFound" : "No movies found"
+  "mod": "Mod",
+  "light": "Light",
+  "dark": "Dark",
+  "setting": "Setting",
+  "movies": "Movies",
+  "home": "HOME",
+  "search": "SEARCH",
+  "browse": "BROWSE",
+  "watchlist": "WATCH LIST",
+  "noMoviesFound": "No movies found",
+  "topRated": "Top Rated",
+  "login": "Login",
+  "userName": "User Name",
+  "usernameCanotBeMoreThanLetters": "Username can't be more than 100 letters",
+  "usernameCanotBeLessThanLetters": "Username can't be less than 5 letters"
 }

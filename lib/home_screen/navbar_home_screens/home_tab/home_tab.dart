@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movies/home_screen/navbar_home_screens/home_tab/popular_movie_details/popular_view_model.dart';
 import 'package:movies/home_screen/navbar_home_screens/home_tab/top_rated_movies/top_rated_view_model.dart';
 import 'package:movies/repo/movie_popular_repo.dart';
@@ -54,7 +55,7 @@ class _HomeTabState extends State<HomeTab> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Top Rated",
+                        AppLocalizations.of(context)!.topRated,
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Expanded(child: TopRatedViewmodel()),

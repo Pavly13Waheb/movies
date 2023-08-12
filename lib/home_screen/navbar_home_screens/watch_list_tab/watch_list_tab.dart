@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movies/API/api_manager_statics_data.dart';
 import 'package:movies/home_screen/navbar_home_screens/watch_list_tab/watch_list_view_model.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +33,7 @@ class _WatchListTabState extends State<WatchListTab> {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text("Watch List",
+            title: Text(AppLocalizations.of(context)!.watchlist,
                 style:
                     TextStyle(fontSize: 30, color: AppColor.darkYellowColor)),
             actions: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movies/home_screen/navbar_home_screens/search_tab/search_delegate/search_delegate.dart';
 import 'package:movies/theme/app_material.dart';
 
@@ -33,7 +34,7 @@ class _SearchTabState extends State<SearchTab> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Search",
+                AppLocalizations.of(context)!.search,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Icon(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movies/home_screen/login/login_view_model.dart';
 import 'package:movies/theme/app_material.dart';
 
@@ -20,7 +21,7 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Login",
+          AppLocalizations.of(context)!.login,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         centerTitle: true,
@@ -47,7 +48,7 @@ class _LoginViewState extends State<LoginView> {
                     Radius.circular(50),
                   ),
                 ),
-                hintText: "User Name",
+                hintText: AppLocalizations.of(context)!.userName,
                 prefixIcon: Icon(Icons.person),
                 border: OutlineInputBorder(
                   borderSide:
@@ -59,17 +60,19 @@ class _LoginViewState extends State<LoginView> {
               ),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               onSaved: (newValue) {
-                LoginView.userNameLogin = newValue!;
+                LoginView.userNameLogin = newValue!.trim();
               },
               onChanged: (value) {
-                LoginView.userNameLogin = value;
+                LoginView.userNameLogin = value.trim();
               },
               validator: (value) {
                 if (value!.length > 100) {
-                  return "Username can't be more than 100 letter";
+                  return AppLocalizations.of(context)!
+                      .usernameCanotBeMoreThanLetters;
                 }
                 if (value.length < 5) {
-                  return "Username can't be less than 5 letter";
+                  return AppLocalizations.of(context)!
+                      .usernameCanotBeLessThanLetters;
                 }
                 return null;
               },
@@ -78,12 +81,14 @@ class _LoginViewState extends State<LoginView> {
             InkWell(
               onTap: () {
                 loginViewModel.checkUserNameValidate(
-                    userName: LoginView.userNameLogin, context: context);
+                    userName: LoginView.userNameLogin!.trim(),
+                    context: context);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Login", style: Theme.of(context).textTheme.bodyLarge),
+                  Text(AppLocalizations.of(context)!.login,
+                      style: Theme.of(context).textTheme.bodyLarge),
                 ],
               ),
             ),
