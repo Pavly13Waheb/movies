@@ -45,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                 fillColor: AppColor.whiteColor,
                 enabledBorder: OutlineInputBorder(
                   borderSide:
-                  BorderSide(color: Colors.red, width: width * .007),
+                      BorderSide(color: Colors.red, width: width * .007),
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -54,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
                 prefixIcon: Icon(Icons.person),
                 border: OutlineInputBorder(
                   borderSide:
-                  BorderSide(width: width * .007, color: Colors.blue),
+                      BorderSide(width: width * .007, color: Colors.blue),
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -134,9 +134,9 @@ class _LoginViewState extends State<LoginView> {
                 Text(
                   "Keep Me Login",
                   style: Theme.of(context).textTheme.bodyMedium,
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
