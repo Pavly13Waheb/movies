@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movie_list/category_movies_list_args.dart';
 import 'package:movies/home_screen/navbar_home_screens/browse_tab/category_movies_list_view/category_movies_list_view_model.dart';
-import 'package:movies/provider/provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../API/api_manager_statics_data.dart';
@@ -44,25 +42,12 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
             title: Text(name),
             centerTitle: true,
           ),
-          body: checkCategoryList(),
+          body: listViewModel.checkCategoryList(
+              categoryMoviesListModel: categoryMoviesListModel(),
+              setState: setState),
         );
       },
     );
-  }
-
-  Widget checkCategoryList() {
-    if (listViewModel.categoryListRepo.results.isNotEmpty) {
-      return categoryMoviesListModel();
-    } else if (listViewModel.categoryListRepo.results.isEmpty) {
-      return Center(
-          child: InkWell(
-              onTap: () {
-                setState(() {});
-              },
-              child: const CircularProgressIndicator()));
-    } else {
-      return checkCategoryList();
-    }
   }
 
   Widget categoryMoviesListModel() {
@@ -104,15 +89,7 @@ class _CategoryMoviesListState extends State<CategoryMoviesList> {
                             color: AppColor.yellowColor,
                           ),
                           onPressed: () {
-                            CollectionReference movie = FirebaseFirestore
-                                .instance
-                                .collection(AppProvider.userNameLogin!);
-                            movie
-                                .doc(listViewModel
-                                    .categoryListRepo.results[index].title)
-                                .set(listViewModel
-                                    .categoryListRepo.results[index]
-                                    .toJson());
+                            listViewModel.addMoviesToFirebase(index);
                           },
                         ),
                       ),

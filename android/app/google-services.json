@@ -30,6 +30,13 @@
             {
               "client_id": "47256033009-0jo6ioek4mjs10p8o6u7bve7rcgkmgej.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "47256033009-3v24e9qocfkpea5np75bteei1prbn555.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.movies.RunnerTests"
+              }
             }
           ]
         }
